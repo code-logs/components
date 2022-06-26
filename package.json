@@ -6,6 +6,10 @@
     "email": "jaylee.possible@gmail.com",
     "url": "https://code-logs.github.io"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/code-logs/post-it"
+  },
   "workspaces": [
     "packages/*"
   ],
