@@ -11,7 +11,8 @@
     "url": "https://github.com/code-logs/post-it"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "packages/components/*"
   ],
   "scripts": {
     "lint": "eslint ./",
