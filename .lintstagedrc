@@ -1,0 +1,9 @@
+{
+  "*.{ts,tsx,js,jsx}": [
+    "yarn lint",
+    "yarn prettier"
+  ],
+  "*.(js|jsx|ts|tsx|css|scss|md|json)": [
+    "yarn prettier"
+  ]
+}
