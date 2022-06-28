@@ -1,5 +1,6 @@
 {
   "name": "post-it",
+  "version": "0.0.0",
   "packageManager": "yarn@3.2.1",
   "author": {
     "name": "Jay Lee",
@@ -11,7 +12,8 @@
     "url": "https://github.com/code-logs/post-it"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "packages/components/*"
   ],
   "scripts": {
     "lint": "eslint ./",
@@ -45,9 +47,9 @@
     "prettier": "^2.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "storybook-addon-sass-postcss": "^0.1.3",
     "typescript": "^4.7.4"
   },
-  "version": "0.0.0",
   "peerDependencies": {
     "require-from-string": "*",
     "webpack": "*"
