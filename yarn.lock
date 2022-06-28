@@ -5069,7 +5069,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/node-logger@npm:6.5.9":
+"@storybook/node-logger@npm:6.5.9, @storybook/node-logger@npm:^6.1.14":
   version: 6.5.9
   resolution: "@storybook/node-logger@npm:6.5.9"
   dependencies:
@@ -16600,6 +16600,7 @@ __metadata:
     prettier: ^2.7.1
     react: ^18.2.0
     react-dom: ^18.2.0
+    storybook-addon-sass-postcss: ^0.1.3
     typescript: ^4.7.4
   peerDependencies:
     require-from-string: "*"
@@ -18943,6 +18944,31 @@ __metadata:
   languageName: node
   linkType: hard
 
+"sass-loader@npm:^10.2.0":
+  version: 10.3.0
+  resolution: "sass-loader@npm:10.3.0"
+  dependencies:
+    klona: ^2.0.4
+    loader-utils: ^2.0.0
+    neo-async: ^2.6.2
+    schema-utils: ^3.0.0
+    semver: ^7.3.2
+  peerDependencies:
+    fibers: ">= 3.1.0"
+    node-sass: ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0
+    sass: ^1.3.0
+    webpack: ^4.36.0 || ^5.0.0
+  peerDependenciesMeta:
+    fibers:
+      optional: true
+    node-sass:
+      optional: true
+    sass:
+      optional: true
+  checksum: 554144457cadccd583530ee9e4f5a7cca9bba3f79083fe848620edd03f39e3fab4f31316ee0add06c84683d505dca092788680f0e2c6f9bb54275eaecb97d6d1
+  languageName: node
+  linkType: hard
+
 "sass-loader@npm:^12.3.0":
   version: 12.6.0
   resolution: "sass-loader@npm:12.6.0"
@@ -18993,7 +19019,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:^1.53.0":
+"sass@npm:^1.43.4, sass@npm:^1.53.0":
   version: 1.53.0
   resolution: "sass@npm:1.53.0"
   dependencies:
@@ -19754,6 +19780,21 @@ __metadata:
   version: 2.13.2
   resolution: "store2@npm:2.13.2"
   checksum: 9e760ea2a7f56eae47d5bafe507511b25ad983bba901e1e0c5f65713e631c15aafb8e031c658047af53c2008a5d21cb6c43f2383673b3493144e8e1ead5c8f91
+  languageName: node
+  linkType: hard
+
+"storybook-addon-sass-postcss@npm:^0.1.3":
+  version: 0.1.3
+  resolution: "storybook-addon-sass-postcss@npm:0.1.3"
+  dependencies:
+    "@storybook/node-logger": ^6.1.14
+    css-loader: ^3.6.0
+    postcss: ^7.0.35
+    postcss-loader: ^4.2.0
+    sass: ^1.43.4
+    sass-loader: ^10.2.0
+    style-loader: ^1.3.0
+  checksum: 233ce9338a8c59a0952d49f751dcb862821fc373e981789ebbe904078f580ea3f4dbe35ef923542c08c8e67742e81efcb7dc2a96ffac6bc5ba3c3d7dfbb032e2
   languageName: node
   linkType: hard
 
