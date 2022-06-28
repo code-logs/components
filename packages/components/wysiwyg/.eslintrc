@@ -17,8 +17,5 @@
       "version": "detect"
     }
   },
-  "ignorePatterns": [
-    "webpack.config.js",
-    "dist"
-  ]
+  "ignorePatterns": ["webpack.config.js", "dist"]
 }
