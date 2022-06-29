@@ -9,7 +9,7 @@ export interface WysiwygResizeButtonProps {
 
 const stateOrders: ResizeType[] = ['none', 'horizontal', 'vertical', 'both']
 
-const WysiwygResizeButton = ({
+const WysiwygResizeEditor = ({
   defaultResizeType = 'none',
   onResizeTypeChangeHandler,
 }: WysiwygResizeButtonProps) => {
@@ -31,4 +31,4 @@ const WysiwygResizeButton = ({
   return <button onClick={rollResizeState}>{resizeState}</button>
 }
 
-export default WysiwygResizeButton
+export default WysiwygResizeEditor
