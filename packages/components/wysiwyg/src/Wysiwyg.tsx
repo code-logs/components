@@ -1,13 +1,14 @@
-import { SupportingPalletItems } from './constants/SupportingPalletItems'
 import React, { useEffect, useMemo, useState } from 'react'
 import { PalletItemType } from 'types/PalletItem'
-import './styles/styles.scss'
-import WysiwygResizeEditor, { ResizeType } from './WysiwygResizeEditor'
 import { DEFAULT_SETTING } from './constants/DefaultSetting'
-import WysiwygFontSizeEditor from './WysiwygFontSizeEditor'
+import { SupportingPalletItems } from './constants/SupportingPalletItems'
+import './styles/styles.scss'
 import WysiwygFontColorEditor from './WysiwygFontColorEditor'
+import WysiwygFontSizeEditor from './WysiwygFontSizeEditor'
+import WysiwygFontWeightEditor from './WysiwygFontWeightEditor'
 import WysiwygLetterSpaceEditor from './WysiwygLetterSpaceEditor'
 import WysiwygLineHeightEditor from './WysiwygLineHeightEditor'
+import WysiwygResizeEditor, { ResizeType } from './WysiwygResizeEditor'
 import WysiwygTextAlignEditor from './WysiwygTextAlignEditor'
 
 export interface WysiwygProps {
@@ -21,6 +22,7 @@ const Wysiwyg = ({ palletItemTypes }: WysiwygProps) => {
   )
   const [fontSize, setFontSize] = useState(DEFAULT_SETTING.FONT_SIZE)
   const [fontColor, setFontColor] = useState(DEFAULT_SETTING.FONT_COLOR)
+  const [fontWeight, setFontWeight] = useState(DEFAULT_SETTING.FONT_WEIGHT)
   const [letterSpace, setLetterSpace] = useState(DEFAULT_SETTING.LETTER_SPACE)
   const [lineHeight, setLineHeight] = useState(DEFAULT_SETTING.LINE_HEIGHT)
   const [textAlign, setTextAlign] = useState(DEFAULT_SETTING.TEXT_ALIGN)
@@ -55,6 +57,10 @@ const Wysiwyg = ({ palletItemTypes }: WysiwygProps) => {
         <WysiwygFontColorEditor
           defaultFontColor={DEFAULT_SETTING.FONT_COLOR}
           onColorChangeHandler={setFontColor}
+        />
+        <WysiwygFontWeightEditor
+          defaultFontWeight={DEFAULT_SETTING.FONT_WEIGHT}
+          onFontWeightChangeHandler={setFontWeight}
         />
         <WysiwygLetterSpaceEditor
           defaultLetterSpace={DEFAULT_SETTING.LETTER_SPACE}
