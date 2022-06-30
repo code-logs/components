@@ -1,14 +1,14 @@
 import React, { FocusEvent } from 'react'
 
-export interface WysiwygLineHeightEditorProps {
+export interface LineHeightPalletProps {
   defaultLineHeight?: number
   onLineHeightChangeHandler: (lineHeight: number) => void
 }
 
-const WysiwygLineHeightEditor = ({
+const LineHeightPallet = ({
   defaultLineHeight = 18,
   onLineHeightChangeHandler,
-}: WysiwygLineHeightEditorProps) => {
+}: LineHeightPalletProps) => {
   return (
     <input
       type="number"
@@ -25,4 +25,4 @@ const WysiwygLineHeightEditor = ({
   )
 }
 
-export default WysiwygLineHeightEditor
+export default LineHeightPallet

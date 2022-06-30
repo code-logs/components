@@ -1,14 +1,14 @@
 import React, { FocusEvent } from 'react'
 
-export interface WysiwygFontWeightEditorProps {
+export interface FontWeightPalletProps {
   defaultFontWeight?: number
   onFontWeightChangeHandler: (fontWeight: number) => void
 }
 
-const WysiwygFontWeightEditor = ({
+const FontWeightPallet = ({
   defaultFontWeight = 400,
   onFontWeightChangeHandler,
-}: WysiwygFontWeightEditorProps) => {
+}: FontWeightPalletProps) => {
   return (
     <input
       type="number"
@@ -25,4 +25,4 @@ const WysiwygFontWeightEditor = ({
   )
 }
 
-export default WysiwygFontWeightEditor
+export default FontWeightPallet

@@ -12,15 +12,15 @@ const alignTypes = [
   AlignTypes.Right,
 ] as const
 
-export interface WysiwygTextAlignEditorProps {
+export interface TextAlignPalletProps {
   defaultAlignType?: AlignTypes
   onTextAlignChangeHandler: (alignType: AlignTypes) => void
 }
 
-const WysiwygTextAlignEditor = ({
+const TextAlignPallet = ({
   defaultAlignType = AlignTypes.Left,
   onTextAlignChangeHandler,
-}: WysiwygTextAlignEditorProps) => {
+}: TextAlignPalletProps) => {
   return (
     <select
       defaultValue={defaultAlignType}
@@ -35,4 +35,4 @@ const WysiwygTextAlignEditor = ({
   )
 }
 
-export default WysiwygTextAlignEditor
+export default TextAlignPallet

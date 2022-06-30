@@ -5,25 +5,25 @@ interface FontSizeOption {
   value: number
 }
 
-interface WysiwygFontSizeEditorProps {
+interface FontSizePalletProps {
   fontSizeOptions?: FontSizeOption[]
   defaultFontSize: number
   onFontSizeChangeHandler: (fontSize: number) => void
 }
 
 const defaultFontSizeOptions: FontSizeOption[] = [
-  { name: '아주 작게 (6pt)', value: 6 },
-  { name: '작게 (8pt)', value: 8 },
-  { name: '보통 (10pt)', value: 10 },
-  { name: '크게 (12pt)', value: 12 },
-  { name: '아주 크게 (14pt)', value: 14 },
+  { name: '아주 작게 (8px)', value: 8 },
+  { name: '작게 (12px)', value: 12 },
+  { name: '보통 (16px)', value: 16 },
+  { name: '크게 (20px)', value: 20 },
+  { name: '아주 크게 (24px)', value: 24 },
 ]
 
-const WysiwygFontSizeEditor = ({
+const FontSizePallet = ({
   fontSizeOptions = defaultFontSizeOptions,
   defaultFontSize,
   onFontSizeChangeHandler,
-}: WysiwygFontSizeEditorProps) => {
+}: FontSizePalletProps) => {
   return (
     <select
       defaultValue={defaultFontSize}
@@ -40,4 +40,4 @@ const WysiwygFontSizeEditor = ({
   )
 }
 
-export default WysiwygFontSizeEditor
+export default FontSizePallet

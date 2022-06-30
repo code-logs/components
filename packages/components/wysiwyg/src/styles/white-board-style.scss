@@ -1,0 +1,23 @@
+$white-board-padding: 10px;
+$white-board-border-radius: 4px;
+$edit-row-padding: 5px 0px;
+
+#white-board {
+  background-color: var(--wysiwyg-bg-color, #fff);
+  padding: var(--wysiwyg-padding, #{$white-board-padding});
+  border: var(--wysiwyg-border, 1px solid black);
+  border-radius: var(--wysiwyg-border-radius, #{$white-board-border-radius});
+  outline: var(--wysiwyg-outline, none);
+  height: inherit;
+  overflow: auto;
+
+  .edit-row {
+    padding: var(--wysiwyg-edit-row-padding, #{$edit-row-padding});
+  }
+
+  #new-line-silhouette {
+    border: 1px solid black;
+    padding: var(--wysiwyg-padding, #{$white-board-padding});
+    border-radius: var(--wysiwyg-border-radius, #{$white-board-border-radius});
+  }
+}
