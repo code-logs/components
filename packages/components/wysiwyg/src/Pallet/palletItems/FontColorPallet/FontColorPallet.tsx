@@ -1,14 +1,14 @@
 import React, { ChangeEvent } from 'react'
 
-export interface WysiwygFontColorEditorProps {
+export interface FontColorPalletProps {
   defaultFontColor: string
   onColorChangeHandler: (color: string) => void
 }
 
-const WysiwygFontColorEditor = ({
+const FontColorPallet = ({
   defaultFontColor,
   onColorChangeHandler,
-}: WysiwygFontColorEditorProps) => {
+}: FontColorPalletProps) => {
   return (
     <input
       type="color"
@@ -20,4 +20,4 @@ const WysiwygFontColorEditor = ({
   )
 }
 
-export default WysiwygFontColorEditor
+export default FontColorPallet
