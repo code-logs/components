@@ -1,10 +1,5 @@
 import React, { ChangeEvent } from 'react'
-
-export enum AlignTypes {
-  Left = 'left',
-  Center = 'center',
-  Right = 'right',
-}
+import { AlignTypes } from '../../../types'
 
 const alignTypes = [
   AlignTypes.Left,

@@ -1,4 +1,3 @@
+export * from './CustomKeyBindingStorageKey'
 export * from './DefaultSetting'
-export * from './EditorsConfig'
-export * from './EditorTypes'
-export * from './ResizeType'
+export * from './KeyBindingProperties'
