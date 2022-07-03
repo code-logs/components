@@ -1,23 +1,21 @@
-$white-board-padding: 10px;
-$white-board-border-radius: 4px;
-$edit-row-padding: 5px 0px;
+@import './common-style.scss';
 
 #white-board {
   background-color: var(--wysiwyg-bg-color, #fff);
-  padding: var(--wysiwyg-padding, #{$white-board-padding});
+  padding: var(--wysiwyg-padding, $common-spacing);
   border: var(--wysiwyg-border, 1px solid black);
-  border-radius: var(--wysiwyg-border-radius, #{$white-board-border-radius});
+  border-radius: var(--wysiwyg-border-radius, $common-border-radius);
   outline: var(--wysiwyg-outline, none);
   height: inherit;
   overflow: auto;
 
   .edit-row {
-    padding: var(--wysiwyg-edit-row-padding, #{$edit-row-padding});
+    padding: var(--wysiwyg-edit-row-padding, $narrow-spacing 0px);
   }
 
   #new-line-silhouette {
     border: 1px solid black;
-    padding: var(--wysiwyg-padding, #{$white-board-padding});
-    border-radius: var(--wysiwyg-border-radius, #{$white-board-border-radius});
+    padding: var(--wysiwyg-padding, $common-spacing);
+    border-radius: var(--wysiwyg-border-radius, $common-border-radius);
   }
 }

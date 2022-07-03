@@ -1,0 +1,94 @@
+@import './common-style.scss';
+
+#setting-view-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(
+    --wysiwyg-setting-view-modal-bg-color,
+    $setting-view-modal-bg-color
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out 0s;
+  overflow: auto;
+
+  &.visible {
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out 0s;
+  }
+
+  & > #setting-view-content {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    background-color: var(
+      --wysiwyg-setting-view-content-bg-color,
+      $setting-view-content-bg-color
+    );
+    max-height: 80%;
+    padding: var(--wysiwyg-setting-view-content-padding, $common-spacing);
+    border-radius: var(
+      --wysiwyg-setting-view-content-border-radius,
+      $common-border-radius
+    );
+
+    & > #setting-view-header {
+      display: flex;
+
+      & > #title {
+        font-size: 1.5rem;
+        margin: $common-spacing 0;
+        flex: 1;
+      }
+
+      & > #close-button {
+        margin: auto 0;
+        background-color: transparent;
+        border: 0;
+      }
+    }
+
+    & > #key-binding {
+      & > #sub-title {
+        font-size: 1.1rem;
+        margin: $common-spacing 0;
+      }
+
+      & > #key-binding-list {
+        padding: 0;
+
+        & > li {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: $narrow-spacing;
+          padding-bottom: $narrow-spacing;
+          margin-bottom: $narrow-spacing;
+          border-bottom: 1px solid #bbb;
+
+          & > .edit-button-group {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: $narrow-spacing;
+          }
+        }
+      }
+
+      & > #new-key-binding-form {
+        & > fieldset {
+          display: flex;
+          flex-direction: column;
+          gap: $narrow-spacing 0;
+
+          & > input[type='submit'] {
+            margin: auto 0 auto auto;
+          }
+        }
+      }
+    }
+  }
+}

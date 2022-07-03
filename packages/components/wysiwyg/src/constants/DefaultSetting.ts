@@ -1,20 +1,18 @@
-import { EditorTypes } from './../types/EditorType'
-import { AlignTypes } from '../Pallet/palletItems/TextAlignPallet/TextAlignPallet'
-import { ResizeType } from './ResizeType'
+import { AlignTypes, KeyBinding, EditorProperty } from '../types'
+import { Resize } from '../types/Resize'
 
 export interface DefaultSetting {
-  EDITOR_TYPE: EditorTypes
-  RESIZE_TYPE: ResizeType
+  RESIZE_TYPE: Resize
   FONT_SIZE: number
   FONT_COLOR: string
   FONT_WEIGHT: number
   LETTER_SPACING: number
   LINE_HEIGHT: number
   TEXT_ALIGN: AlignTypes
+  KEY_BINDINGS: KeyBinding[]
 }
 
 export const DEFAULT_SETTING: DefaultSetting = {
-  EDITOR_TYPE: 'text',
   RESIZE_TYPE: 'none',
   FONT_SIZE: 16,
   FONT_COLOR: '#000',
@@ -22,4 +20,9 @@ export const DEFAULT_SETTING: DefaultSetting = {
   LETTER_SPACING: 0,
   LINE_HEIGHT: 18,
   TEXT_ALIGN: AlignTypes.Left,
+  KEY_BINDINGS: [
+    { key: 'c', property: EditorProperty.Color },
+    { key: 's', property: EditorProperty.FontSize },
+    { key: 'w', property: EditorProperty.FontWeight },
+  ],
 }

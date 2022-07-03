@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import { EditorTypes } from 'types/EditorType'
 import { DEFAULT_SETTING } from '../constants'
-import EditorTypePallet from './palletItems/EditorTypePallet/EditorTypePallet'
 import FontColorPallet from './palletItems/FontColorPallet/FontColorPallet'
 import FontSizePallet from './palletItems/FontSizePallet/FontSizePallet'
 import FontWeightPallet from './palletItems/FontWeightPallet/FontWeightPallet'
@@ -10,9 +8,6 @@ import LineHeightPallet from './palletItems/LineHeightPallet/LineHeightPallet'
 import TextAlignPallet from './palletItems/TextAlignPallet/TextAlignPallet'
 
 const Pallet = () => {
-  const [editorType, setEditorType] = useState<EditorTypes>(
-    DEFAULT_SETTING.EDITOR_TYPE
-  )
   const [fontSize, setFontSize] = useState(DEFAULT_SETTING.FONT_SIZE)
   const [fontColor, setFontColor] = useState(DEFAULT_SETTING.FONT_COLOR)
   const [fontWeight, setFontWeight] = useState(DEFAULT_SETTING.FONT_WEIGHT)
@@ -25,11 +20,6 @@ const Pallet = () => {
   return (
     <>
       <div id="settings">
-        <EditorTypePallet
-          defaultEditorType={DEFAULT_SETTING.EDITOR_TYPE}
-          onEditorTypeChangeHandler={setEditorType}
-        />
-
         <FontSizePallet
           defaultFontSize={DEFAULT_SETTING.FONT_SIZE}
           onFontSizeChangeHandler={setFontSize}
