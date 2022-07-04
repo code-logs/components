@@ -2921,6 +2921,8 @@ __metadata:
     webpack-cli: ^4.10.0
   peerDependencies:
     react: "*"
+    react-dom: "*"
+    require-from-string: "*"
   languageName: unknown
   linkType: soft
 

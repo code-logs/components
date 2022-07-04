@@ -44,6 +44,8 @@
     "webpack-cli": "^4.10.0"
   },
   "peerDependencies": {
-    "react": "*"
+    "react": "*",
+    "react-dom": "*",
+    "require-from-string": "*"
   }
 }
