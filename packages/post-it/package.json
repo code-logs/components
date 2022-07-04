@@ -13,10 +13,10 @@
     "directory": "packages/post-it"
   },
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
-    "test": "craco test",
-    "eject": "craco eject",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
     "lint": "eslint ./",
     "prettier": "prettier --write"
   },
@@ -33,7 +33,6 @@
     ]
   },
   "dependencies": {
-    "@code-logs/wysiwyg": "workspace:*",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
@@ -48,7 +47,6 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "@craco/craco": "^6.4.3",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-prettier": "^4.0.0",

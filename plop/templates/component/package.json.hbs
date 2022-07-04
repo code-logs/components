@@ -1,19 +1,21 @@
 {
-  "name": "@code-logs/wysiwyg",
+  "name": "@code-logs/{{ kebabCase name }}",
   "author": {
     "name": "Jay Lee",
     "email": "jaylee.possible@gmail.com",
     "url": "https://code-logs.github.io"
   },
+  "main": "dist/index.js",
+  "version": "0.0.0",
+  "packageManager": "yarn@3.2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/code-logs/post-it",
-    "directory": "packages/components/wysiwyg"
+    "directory": "packages/components/{{ kebabCase name }}"
   },
-  "main": "dist/index.js",
   "scripts": {
-    "lint": "eslint ./",
-    "prettier": "prettier --write ./",
+    "lint": "eslint",
+    "prettier": "prettier --write",
     "build": "webpack --config ./webpack.config.js && yarn emit:types",
     "emit:types": "tsc --emitDeclarationOnly",
     "clean": "rm -rf ./dist"
