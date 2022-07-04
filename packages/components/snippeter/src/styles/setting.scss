@@ -1,0 +1,100 @@
+#snippeter-setting {
+  opacity: 0;
+  transition: opacity 0.3s ease-out 0s;
+
+  &.visible {
+    opacity: 1;
+    transition: opacity 0.3s ease-out 0s;
+  }
+
+  & #modal {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+  & #setting {
+    padding: 10px;
+    border-radius: 4px;
+    position: fixed;
+    background-color: #fff;
+    min-width: 60%;
+    max-width: 80%;
+    max-height: 80%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    overflow: auto;
+
+    & .main-header {
+      display: flex;
+    }
+
+    & .title {
+      margin: 0;
+      padding: 5px 0;
+      flex: 1;
+    }
+
+    & #close-button {
+      background-color: transparent;
+      border: none;
+      float: right;
+    }
+
+    & .subtitle {
+      margin: 0;
+      padding: 5px 0;
+      font-size: smaller;
+    }
+
+    & #my-snippet-list {
+      margin: 0;
+      padding: 0;
+
+      & > .my-snippet-list-item {
+        display: grid;
+        grid-template-columns: 1fr auto auto;
+        gap: 5px;
+        margin: 5px 0;
+        padding: 5px 0;
+        border-bottom: 1px solid #ccc;
+
+        & .button {
+          margin: auto;
+        }
+
+        & > span {
+          flex: 1;
+        }
+
+        & > form {
+          grid-column: 1 / 4;
+        }
+      }
+    }
+
+    & #no-snippet-message {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #888;
+      border-left: none;
+      border-right: none;
+      padding: 10px;
+      color: #888;
+
+      & > strong {
+        color: #000;
+        margin-bottom: 5px;
+      }
+
+      & > span {
+        margin-left: 10px;
+      }
+    }
+  }
+}
