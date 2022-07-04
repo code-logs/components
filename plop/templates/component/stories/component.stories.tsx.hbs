@@ -1,0 +1,15 @@
+import React from 'react'
+import {{ pascalCase name }}, { {{ pascalCase name }}Props } from '../src'
+
+export default {
+  title: '{{ pascalCase name }} Example',
+  component: {{ pascalCase name }},
+}
+
+const Template = (args: {{ pascalCase name }}Props) => <{{ pascalCase name }} {...args} />
+export const Default = Template.bind({})
+
+Default.args = {
+  foo: 'foo',
+  bar: 'bar',
+}

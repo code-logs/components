@@ -1,0 +1,19 @@
+import React from 'react'
+import './styles/style.scss'
+
+export interface {{ pascalCase name }}Props {
+  foo: string
+  bar: string
+}
+
+const {{ pascalCase name }} = (props: {{ pascalCase name }}Props): JSX.Element => {
+  const { foo, bar } = props
+
+  return (
+    <>
+      <p className="{{ kebabCase name }}">{foo}</p>
+      <p className="{{ kebabCase name }}">{bar}</p>
+    </>
+  )
+}
+export default {{ pascalCase name }}
