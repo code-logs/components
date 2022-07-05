@@ -1,0 +1,38 @@
+#snippeter-snippet-context {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.1s ease-out 0s;
+
+  &.visible {
+    opacity: 1;
+    transition: opacity 0.1s ease-out 0s;
+  }
+
+  input {
+    outline: none;
+    border: none;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: flex;
+      padding: 5px;
+      border-bottom: 1px solid #ccc;
+      outline: none;
+
+      &.focus {
+        color: white;
+        background-color: #ccc;
+      }
+    }
+
+    li:last-child {
+      border: none;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+#snippeter-whiteboard {
+  & #whiteboard {
+    padding: 10px;
+    border: 1px solid #666;
+    background-color: #fff;
+    outline: none;
+
+    & > p.paragraph {
+      margin: 0;
+      min-height: 16px;
+      border: 1px dotted red;
+
+      & > span.phrase {
+        min-width: 1px;
+      }
+
+      & * {
+        border: 1px solid transparent;
+        display: inline-block;
+        min-height: 16px;
+      }
+    }
+  }
+}

@@ -1,31 +1,35 @@
 import React, { useState } from 'react'
-import { Snippet } from 'types'
+import { DEFAULT_SETTINGS } from '../constants'
+import { Snippet } from '../types'
 import Setting from './Setting/Setting'
-import WhiteBoard from './WhiteBoard/WhiteBoard'
+import Whiteboard from './Whiteboard/Whiteboard'
 
 export interface SnippeterProps {
   snippets?: Snippet[]
   onSnippetsChangeHandler: (snippets: Snippet[]) => void
 }
 
-const Snippeter = ({ snippets, onSnippetsChangeHandler }: SnippeterProps) => {
-  const [showSetting, setShowSetting] = useState(false)
+const Snippeter = ({
+  snippets = DEFAULT_SETTINGS.SNIPPETS,
+  onSnippetsChangeHandler,
+}: SnippeterProps) => {
+  const [isSettingOpened, setIsSettingOpened] = useState(false)
 
   return (
     <section>
       <header>
-        <button onClick={() => setShowSetting(true)}>Setting</button>
+        <button onClick={() => setIsSettingOpened(true)}>Setting</button>
       </header>
 
-      {showSetting && (
+      {isSettingOpened && (
         <Setting
           snippets={snippets}
           onSnippetsChangeHandler={onSnippetsChangeHandler}
-          onCloseHandler={() => setShowSetting(false)}
+          onCloseHandler={() => setIsSettingOpened(false)}
         />
       )}
 
-      <WhiteBoard />
+      <Whiteboard snippets={snippets} />
     </section>
   )
 }

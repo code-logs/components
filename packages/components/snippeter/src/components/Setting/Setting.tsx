@@ -1,31 +1,24 @@
-import React, {
-  CSSProperties,
-  KeyboardEvent,
-  useCallback,
-  useEffect,
-  useState,
-} from 'react'
-import { Snippet } from '../../types'
+import React, { KeyboardEvent, useCallback, useEffect, useState } from 'react'
 import '../../styles/setting.scss'
-import { DEFAULT_SETTINGS } from '../../constants'
+import { Snippet } from '../../types'
+import { generateSampleSnippet } from '../../utils/generate-snippet'
 import SnippetEditor from '../SnippetEditor/SnippetEditor'
-import withPixel from '../../utils/with-pixel'
 
 export interface SettingProps {
-  snippets?: Snippet[]
+  snippets: Snippet[]
   onSnippetsChangeHandler: (snippets: Snippet[]) => void
   onCloseHandler: () => void
 }
 
 const Setting = ({
-  snippets = DEFAULT_SETTINGS.SNIPPETS,
+  snippets,
   onSnippetsChangeHandler,
   onCloseHandler,
 }: SettingProps) => {
   const [visibility, setVisibility] = useState(false)
 
   useEffect(() => {
-    if (!visibility) setVisibility(true)
+    setVisibility(true)
   }, [])
 
   const closeModal = useCallback(() => {
@@ -54,23 +47,10 @@ const Setting = ({
     )
   }
 
-  const generateSnippetSample = useCallback(
-    ({ key, tag, fontSize, color, fontWeight, useItalic }: Snippet) => {
-      const style: CSSProperties = {}
-      if (fontSize) style.fontSize = withPixel(fontSize)
-      if (color) style.color = color
-      if (fontWeight) style.fontWeight = fontWeight
-      if (useItalic) style.fontStyle = 'italic'
-
-      return React.createElement(tag, { style }, `${key} - ${tag}`)
-    },
-    []
-  )
-
   return (
     <section
       id="snippeter-setting"
-      className={visibility ? 'visible' : ''}
+      className={visibility ? 'visible' : undefined}
       onKeyUp={(event: KeyboardEvent<HTMLElement>) => {
         if (event.code === 'Escape') {
           setVisibility(false)
@@ -102,7 +82,7 @@ const Setting = ({
 
                 return (
                   <li className="my-snippet-list-item" key={key}>
-                    {generateSnippetSample(snippet)}
+                    {generateSampleSnippet(snippet)}
                     {key === toggledSnippetKey ? (
                       <button
                         className="button"
