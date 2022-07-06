@@ -5,16 +5,18 @@
     background-color: #fff;
     outline: none;
 
-    & > p.paragraph {
+    & > p[snippeter-paragraph] {
       margin: 0;
       min-height: 16px;
       border: 1px dotted red;
 
-      & > span.phrase {
+      & > span[snippeter-phrase] {
+        border: 1px solid transparent;
+        display: inline-block;
         min-width: 1px;
       }
 
-      & * {
+      & [snippet] {
         border: 1px solid transparent;
         display: inline-block;
         min-height: 16px;

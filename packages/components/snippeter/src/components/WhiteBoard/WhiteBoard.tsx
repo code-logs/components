@@ -5,7 +5,11 @@ import React, {
   useRef,
   useState,
 } from 'react'
-import { DEFAULT_SETTINGS } from '../../constants'
+import {
+  DEFAULT_SETTINGS,
+  PHRASE_ATTRIBUTE,
+  SNIPPET_ATTRIBUTE,
+} from '../../constants'
 import '../../styles/whiteboard.scss'
 import { Snippet } from '../../types'
 import Caret from '../../utils/caret'
@@ -52,22 +56,31 @@ const Whiteboard = ({ snippets }: WhiteboardProps) => {
     setIsSnippetContextOpened(true)
   }
 
-  const onKeyUpHandler = ({ key }: KeyboardEvent<HTMLDivElement>) => {
-    if (key !== DEFAULT_SETTINGS.DELIMITER_KEY) return
+  const onWhiteboardKeyUp = (event: KeyboardEvent<HTMLDivElement>) => {
+    const { key } = event
+    if (key === DEFAULT_SETTINGS.DELIMITER_KEY) {
+      try {
+        setLastAnchorOffset(Caret.anchorOffset())
+        setLastAnchorNode(Caret.anchorNode())
+        setLastParentNode(Caret.parentNode())
 
-    try {
-      setLastAnchorOffset(Caret.anchorOffset())
-      setLastAnchorNode(Caret.anchorNode())
-      setLastParentNode(Caret.parentNode())
-
-      const { x, y } = Caret.rect()
-      openSnippetContext(x, y)
-    } catch (e) {
-      if (e instanceof Error) {
-        alert(e.message)
-      } else {
-        alert('Unexpected error is occurred')
+        const { x, y } = Caret.rect()
+        openSnippetContext(x, y)
+      } catch (e) {
+        if (e instanceof Error) {
+          alert(e.message)
+        } else {
+          alert('Unexpected error is occurred')
+        }
       }
+    }
+
+    if (
+      !event.currentTarget.textContent &&
+      event.currentTarget.childElementCount === 1 &&
+      event.key === 'Backspace'
+    ) {
+      event.preventDefault()
     }
   }
 
@@ -92,18 +105,25 @@ const Whiteboard = ({ snippets }: WhiteboardProps) => {
     whiteboardRef.current.appendChild(paragraph)
   }
 
-  const onWhiteboardKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    if (
-      !event.currentTarget.textContent &&
-      event.currentTarget.childElementCount === 1 &&
-      event.key === 'Backspace'
-    ) {
-      event.preventDefault()
+  const onPhraseKeyUp = () => {
+    const phrase = Caret.anchorNode().parentElement
+    if (!phrase?.hasAttribute(PHRASE_ATTRIBUTE)) {
+      throw new Error('Failed to find target phrase')
+    }
+
+    if (!phrase?.textContent?.length) {
+      if (phrase.style.display !== 'inline-block') {
+        phrase.style.display = 'inline-block'
+      }
+    } else {
+      if (phrase.style.display !== 'inline') {
+        phrase.style.display = 'inline'
+      }
     }
   }
 
   const onSnippetKeyDown = (event: KeyboardEvent<HTMLElement>) => {
-    if ((event.metaKey || event.ctrlKey) && event.key === 'Enter') {
+    if (event.shiftKey && event.key === 'Enter') {
       event.preventDefault()
       Caret.escapeCaret()
     }
@@ -142,14 +162,22 @@ const Whiteboard = ({ snippets }: WhiteboardProps) => {
         style={computeWhiteboardStyle()}
         ref={whiteboardRef}
         contentEditable
-        onKeyUp={onKeyUpHandler}
+        onKeyUp={(event) => {
+          const parentElement = Caret.anchorNode().parentElement
+          if (!parentElement) return
+
+          if (parentElement.hasAttribute(PHRASE_ATTRIBUTE)) {
+            onPhraseKeyUp()
+          }
+
+          onWhiteboardKeyUp(event)
+        }}
         onKeyDown={(event) => {
           const parentElement = Caret.anchorNode().parentElement
           if (!parentElement) return
-          if (parentElement.hasAttribute('snippet')) {
+
+          if (parentElement.hasAttribute(SNIPPET_ATTRIBUTE)) {
             onSnippetKeyDown(event)
-          } else {
-            onWhiteboardKeyDown(event)
           }
         }}
         onClick={(event) => {

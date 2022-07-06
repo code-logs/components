@@ -1,3 +1,5 @@
+import { PARAGRAPH_ATTRIBUTE } from './../constants'
+import { generatePhrase } from './generate-snippet'
 class Caret {
   public static rect() {
     return this.getSelection().getRangeAt(0).getBoundingClientRect()
@@ -40,16 +42,15 @@ class Caret {
 
   public static escapeCaret() {
     let paragraph = this.anchorNode().parentElement
-    while (paragraph && !paragraph.classList.contains('paragraph')) {
+    while (paragraph && !paragraph.hasAttribute(PARAGRAPH_ATTRIBUTE)) {
       paragraph = paragraph.parentElement
     }
 
     if (!paragraph) throw new Error('Failed to find paragraph')
 
-    const span = document.createElement('span')
-    paragraph.append(span)
-    this.placeCaret(span)
-    // textNode.textContent = ''
+    const phrase = generatePhrase()
+    paragraph.append(phrase)
+    this.placeCaret(phrase)
   }
 }
 

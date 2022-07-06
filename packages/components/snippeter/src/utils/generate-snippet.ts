@@ -1,4 +1,9 @@
 import React, { CSSProperties } from 'react'
+import {
+  PARAGRAPH_ATTRIBUTE,
+  PHRASE_ATTRIBUTE,
+  SNIPPET_ATTRIBUTE,
+} from '../constants'
 import { Snippet } from '../types'
 import withPixel from './with-pixel'
 
@@ -18,7 +23,7 @@ export const generateEditableSnippet = ({
   if (color) snippetElement.style.color = color
   if (fontWeight) snippetElement.style.fontWeight = String(fontWeight)
   if (useItalic) snippetElement.style.fontStyle = 'italic'
-  snippetElement.setAttribute('snippet', '')
+  snippetElement.setAttribute(SNIPPET_ATTRIBUTE, '')
   snippetElement.setAttribute('contentEditable', '')
 
   return snippetElement
@@ -40,16 +45,16 @@ const createSnippetElement = (
 export const generateParagraph = () => {
   const paragraph = document.createElement('p')
   paragraph.setAttribute('contentEditable', '')
-  paragraph.classList.add('paragraph')
+  paragraph.setAttribute(PARAGRAPH_ATTRIBUTE, '')
   paragraph.append(generatePhrase())
 
   return paragraph
 }
 
-const generatePhrase = () => {
+export const generatePhrase = () => {
   const phrase = document.createElement('span')
   phrase.setAttribute('contentEditable', '')
-  phrase.classList.add('phrase')
+  phrase.setAttribute(PHRASE_ATTRIBUTE, '')
 
   return phrase
 }
