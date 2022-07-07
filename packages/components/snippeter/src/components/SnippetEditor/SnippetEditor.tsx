@@ -67,7 +67,7 @@ const SnippetEditor = ({
         <label className="v-label">
           <span>Font size</span>
           <input
-            name="font-size"
+            name="fontSize"
             type="number"
             min={1}
             defaultValue={fontSize}
@@ -78,7 +78,7 @@ const SnippetEditor = ({
         <label className="v-label">
           <span>Font color</span>
           <input
-            name="font-color"
+            name="color"
             type="color"
             defaultValue={color || '#000000'}
             disabled={!actionTitle}
@@ -88,7 +88,7 @@ const SnippetEditor = ({
         <label className="v-label">
           <span>Font weight</span>
           <select
-            name="font-weight"
+            name="fontWeight"
             defaultValue={fontWeight}
             disabled={!actionTitle}
           >

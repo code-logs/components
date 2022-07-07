@@ -1,0 +1,21 @@
+#snippeter-whiteboard-option-controller {
+  display: flex;
+  border: 1px solid black;
+  border-bottom: none;
+  padding: 5px;
+  gap: 10px;
+
+  & label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 5px;
+    font-size: smaller;
+  }
+
+  & input {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    font-size: smaller;
+  }
+}
