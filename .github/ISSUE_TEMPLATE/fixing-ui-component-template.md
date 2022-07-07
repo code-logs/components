@@ -1,7 +1,7 @@
 ---
 name: Fixing UI component template
 about: Fixing UI component
-title: ''
+title: "[BUG COMPONENT] Component name"
 labels: component bug
 assignees: possible819
 
