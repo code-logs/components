@@ -7,6 +7,7 @@ import React, {
 } from 'react'
 import {
   DEFAULT_SETTINGS,
+  PARAGRAPH_ATTRIBUTE,
   PHRASE_ATTRIBUTE,
   SNIPPET_ATTRIBUTE,
 } from '../../constants'
@@ -14,8 +15,8 @@ import '../../styles/whiteboard.scss'
 import { Snippet } from '../../types'
 import Caret from '../../utils/caret'
 import {
-  generateSnippet,
   generateParagraph,
+  generateSnippet,
 } from '../../utils/generate-snippet'
 import withPixel from '../../utils/with-pixel'
 import SnippetContext, {
@@ -52,9 +53,36 @@ const Whiteboard = ({ snippets }: WhiteboardProps) => {
     return style
   }, [commonFontSize, commonLineHeight])
 
+  const getCurrentParagraph = () => {
+    const anchorElement = Caret.anchorElement()
+
+    let element = anchorElement
+    while (element && !element.hasAttribute(PARAGRAPH_ATTRIBUTE)) {
+      if (!element.parentElement) throw new Error('Failed to find paragraph')
+      element = element.parentElement
+    }
+
+    return element
+  }
+
   const openSnippetContext = (x: number, y: number) => {
     setSnippetContextPosition({ x, y })
     setIsSnippetContextOpened(true)
+  }
+
+  const onPhraseKeyUp = (phrase: HTMLSpanElement) => {
+    if (!phrase.textContent && phrase.style.display !== 'inline-block') {
+      phrase.style.display = 'inline-block'
+    } else if (phrase.textContent && phrase.style.display !== 'inline') {
+      phrase.style.display = 'inline'
+    }
+  }
+
+  const onSnippetKeyDown = (event: KeyboardEvent<HTMLElement>) => {
+    if (event.shiftKey && event.key === 'Enter') {
+      event.preventDefault()
+      Caret.escapeCaret()
+    }
   }
 
   const onWhiteboardKeyUp = (event: KeyboardEvent<HTMLDivElement>) => {
@@ -76,12 +104,11 @@ const Whiteboard = ({ snippets }: WhiteboardProps) => {
       }
     }
 
-    if (
-      !event.currentTarget.textContent &&
-      event.currentTarget.childElementCount === 1 &&
-      event.key === 'Backspace'
-    ) {
-      event.preventDefault()
+    const currentParagraph = getCurrentParagraph()
+    if (!currentParagraph) appendParagraph()
+    if (currentParagraph && !currentParagraph.textContent) {
+      currentParagraph.remove()
+      appendParagraph()
     }
   }
 
@@ -102,29 +129,11 @@ const Whiteboard = ({ snippets }: WhiteboardProps) => {
 
   const appendParagraph = () => {
     if (!whiteboardRef.current) return
+
     const paragraph = generateParagraph()
     whiteboardRef.current.appendChild(paragraph)
     const phrase = paragraph.firstElementChild
     if (phrase) Caret.placeCaret(phrase)
-  }
-
-  const onPhraseKeyUp = (phrase: HTMLElement) => {
-    if (!phrase.childElementCount) {
-      if (phrase.style.display !== 'inline-block') {
-        phrase.style.display = 'inline-block'
-      }
-    } else {
-      if (phrase.style.display !== 'inline') {
-        phrase.style.display = 'inline'
-      }
-    }
-  }
-
-  const onSnippetKeyDown = (event: KeyboardEvent<HTMLElement>) => {
-    if (event.shiftKey && event.key === 'Enter') {
-      event.preventDefault()
-      Caret.escapeCaret()
-    }
   }
 
   return (
@@ -159,25 +168,22 @@ const Whiteboard = ({ snippets }: WhiteboardProps) => {
         id="whiteboard"
         style={computeWhiteboardStyle()}
         ref={whiteboardRef}
+        contentEditable
         onKeyUp={(event) => {
-          const anchorNode = Caret.anchorNode()
-          const parentElement = anchorNode.parentElement
-          if (!parentElement) return
+          const currentElement = Caret.anchorElement()
 
           if (
-            anchorNode instanceof HTMLElement &&
-            anchorNode.hasAttribute(PHRASE_ATTRIBUTE)
+            currentElement instanceof HTMLSpanElement &&
+            currentElement.hasAttribute(PHRASE_ATTRIBUTE)
           ) {
-            onPhraseKeyUp(anchorNode)
+            onPhraseKeyUp(currentElement)
           }
 
           onWhiteboardKeyUp(event)
         }}
         onKeyDown={(event) => {
-          const parentElement = Caret.anchorNode().parentElement
-          if (!parentElement) return
-
-          if (parentElement.hasAttribute(SNIPPET_ATTRIBUTE)) {
+          const currentElement = Caret.anchorElement()
+          if (currentElement?.hasAttribute(SNIPPET_ATTRIBUTE)) {
             onSnippetKeyDown(event)
           }
         }}

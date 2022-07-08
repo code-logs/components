@@ -5,6 +5,7 @@ import {
   SNIPPET_ATTRIBUTE,
 } from '../constants'
 import { Snippet } from '../types'
+import Caret from './caret'
 import withPixel from './with-pixel'
 
 export const generateSampleSnippet = (snippet: Snippet) => {
@@ -25,6 +26,14 @@ export const generateSnippet = ({
   if (useItalic) snippetElement.style.fontStyle = 'italic'
   snippetElement.setAttribute(SNIPPET_ATTRIBUTE, '')
   snippetElement.setAttribute('contentEditable', '')
+
+  snippetElement.addEventListener('keydown', (event) => {
+    const { shiftKey, key } = event
+    if (shiftKey && key === 'Enter') {
+      event.preventDefault()
+      Caret.escapeCaret()
+    }
+  })
 
   return snippetElement
 }

@@ -1,4 +1,3 @@
-import { PHRASE_ATTRIBUTE } from './../constants/identify-attributes'
 import { PARAGRAPH_ATTRIBUTE } from './../constants'
 import { generatePhrase } from './generate-snippet'
 class Caret {
@@ -22,6 +21,15 @@ class Caret {
     if (!anchorNode) throw new Error('Failed to find anchor node')
 
     return anchorNode as Node | HTMLElement
+  }
+
+  public static anchorElement() {
+    const anchorNode = this.anchorNode()
+    if (anchorNode instanceof HTMLElement) {
+      return anchorNode
+    } else {
+      return anchorNode.parentElement
+    }
   }
 
   public static parentElement() {
@@ -52,11 +60,11 @@ class Caret {
     }
 
     const phrase = snippet.parentElement
-    if (!phrase || !phrase.hasAttribute(PHRASE_ATTRIBUTE))
-      throw new Error('Failed to find phrase')
+    if (!phrase) throw new Error('Failed to find phrase')
 
     let nextPhrase = phrase.nextElementSibling
-    if (!nextPhrase) {
+    if (!nextPhrase || nextPhrase instanceof HTMLBRElement) {
+      nextPhrase?.remove()
       nextPhrase = generatePhrase()
       paragraph.insertBefore(nextPhrase, phrase.nextSibling)
     }
