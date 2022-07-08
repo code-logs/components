@@ -11,7 +11,7 @@ export const generateSampleSnippet = (snippet: Snippet) => {
   return createSnippetElement(snippet, `${snippet.key} - ${snippet.tag}`)
 }
 
-export const generateEditableSnippet = ({
+export const generateSnippet = ({
   tag,
   fontSize,
   color,
@@ -44,8 +44,8 @@ const createSnippetElement = (
 
 export const generateParagraph = () => {
   const paragraph = document.createElement('p')
-  paragraph.setAttribute('contentEditable', '')
   paragraph.setAttribute(PARAGRAPH_ATTRIBUTE, '')
+  paragraph.setAttribute('contentEditable', '')
   paragraph.append(generatePhrase())
 
   return paragraph
