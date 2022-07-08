@@ -5,22 +5,29 @@
     background-color: #fff;
     outline: none;
 
+    & * {
+      outline: none;
+    }
+
     & > p[snippeter-paragraph] {
       margin: 0;
       min-height: 16px;
-      border: 1px dotted red;
+      border: 1px solid red;
+      padding: 5px 0;
 
       & > span[snippeter-phrase] {
-        border: 1px solid transparent;
+        border: 1px solid green;
         display: inline-block;
         min-width: 1px;
         min-height: inherit;
+        padding: 5px 0;
       }
 
       & [snippet] {
-        border: 1px solid transparent;
+        border: 1px solid blue;
         display: inline-block;
         min-height: 16px;
+        padding: 5px 0;
       }
     }
   }

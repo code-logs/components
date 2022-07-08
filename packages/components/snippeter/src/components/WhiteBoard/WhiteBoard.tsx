@@ -14,7 +14,7 @@ import '../../styles/whiteboard.scss'
 import { Snippet } from '../../types'
 import Caret from '../../utils/caret'
 import {
-  generateEditableSnippet,
+  generateSnippet,
   generateParagraph,
 } from '../../utils/generate-snippet'
 import withPixel from '../../utils/with-pixel'
@@ -35,7 +35,8 @@ const Whiteboard = ({ snippets }: WhiteboardProps) => {
 
   const [lastAnchorOffset, setLastAnchorOffset] = useState<number | null>(null)
   const [lastAnchorNode, setLastAnchorNode] = useState<Node | null>(null)
-  const [lastParentNode, setLastParentNode] = useState<Node | null>(null)
+  const [lastParentElement, setLastParentElement] =
+    useState<HTMLElement | null>(null)
 
   const [isSnippetContextOpened, setIsSnippetContextOpened] = useState(false)
   const [snippetContextPosition, setSnippetContextPosition] = useState<{
@@ -62,7 +63,7 @@ const Whiteboard = ({ snippets }: WhiteboardProps) => {
       try {
         setLastAnchorOffset(Caret.anchorOffset())
         setLastAnchorNode(Caret.anchorNode())
-        setLastParentNode(Caret.parentNode())
+        setLastParentElement(Caret.parentElement())
 
         const { x, y } = Caret.rect()
         openSnippetContext(x, y)
@@ -90,10 +91,10 @@ const Whiteboard = ({ snippets }: WhiteboardProps) => {
   }
 
   const appendNewSnippet = (snippet: Snippet) => {
-    if (!lastParentNode || !lastAnchorNode?.textContent) return
+    if (!lastParentElement || !lastAnchorNode?.textContent) return
 
-    const snippetElement = generateEditableSnippet(snippet)
-    lastParentNode.insertBefore(snippetElement, lastAnchorNode.nextSibling)
+    const snippetElement = generateSnippet(snippet)
+    lastParentElement.insertBefore(snippetElement, lastAnchorNode.nextSibling)
     lastAnchorNode.textContent = lastAnchorNode.textContent.replace(/:$/, '')
 
     Caret.placeCaret(snippetElement)
@@ -103,15 +104,12 @@ const Whiteboard = ({ snippets }: WhiteboardProps) => {
     if (!whiteboardRef.current) return
     const paragraph = generateParagraph()
     whiteboardRef.current.appendChild(paragraph)
+    const phrase = paragraph.firstElementChild
+    if (phrase) Caret.placeCaret(phrase)
   }
 
-  const onPhraseKeyUp = () => {
-    const phrase = Caret.anchorNode().parentElement
-    if (!phrase?.hasAttribute(PHRASE_ATTRIBUTE)) {
-      throw new Error('Failed to find target phrase')
-    }
-
-    if (!phrase?.textContent?.length) {
+  const onPhraseKeyUp = (phrase: HTMLElement) => {
+    if (!phrase.childElementCount) {
       if (phrase.style.display !== 'inline-block') {
         phrase.style.display = 'inline-block'
       }
@@ -150,7 +148,7 @@ const Whiteboard = ({ snippets }: WhiteboardProps) => {
               appendNewSnippet(snippet)
             }
 
-            setLastParentNode(null)
+            setLastParentElement(null)
             setLastAnchorNode(null)
             setLastAnchorOffset(null)
           }}
@@ -161,13 +159,16 @@ const Whiteboard = ({ snippets }: WhiteboardProps) => {
         id="whiteboard"
         style={computeWhiteboardStyle()}
         ref={whiteboardRef}
-        contentEditable
         onKeyUp={(event) => {
-          const parentElement = Caret.anchorNode().parentElement
+          const anchorNode = Caret.anchorNode()
+          const parentElement = anchorNode.parentElement
           if (!parentElement) return
 
-          if (parentElement.hasAttribute(PHRASE_ATTRIBUTE)) {
-            onPhraseKeyUp()
+          if (
+            anchorNode instanceof HTMLElement &&
+            anchorNode.hasAttribute(PHRASE_ATTRIBUTE)
+          ) {
+            onPhraseKeyUp(anchorNode)
           }
 
           onWhiteboardKeyUp(event)

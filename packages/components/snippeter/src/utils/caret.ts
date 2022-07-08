@@ -1,3 +1,4 @@
+import { PHRASE_ATTRIBUTE } from './../constants/identify-attributes'
 import { PARAGRAPH_ATTRIBUTE } from './../constants'
 import { generatePhrase } from './generate-snippet'
 class Caret {
@@ -20,11 +21,11 @@ class Caret {
     const anchorNode = this.getSelection().anchorNode
     if (!anchorNode) throw new Error('Failed to find anchor node')
 
-    return anchorNode
+    return anchorNode as Node | HTMLElement
   }
 
-  public static parentNode() {
-    const parentNode = this.anchorNode().parentNode
+  public static parentElement() {
+    const parentNode = this.anchorNode().parentElement
     if (!parentNode) throw new Error('Failed to find parent node')
 
     return parentNode
@@ -41,16 +42,26 @@ class Caret {
   }
 
   public static escapeCaret() {
-    let paragraph = this.anchorNode().parentElement
+    const snippet = this.anchorNode().parentElement
+    if (!snippet) throw new Error('Failed to find snippet')
+
+    let paragraph = snippet
     while (paragraph && !paragraph.hasAttribute(PARAGRAPH_ATTRIBUTE)) {
+      if (!paragraph.parentElement) throw new Error('Failed to find paragraph')
       paragraph = paragraph.parentElement
     }
 
-    if (!paragraph) throw new Error('Failed to find paragraph')
+    const phrase = snippet.parentElement
+    if (!phrase || !phrase.hasAttribute(PHRASE_ATTRIBUTE))
+      throw new Error('Failed to find phrase')
 
-    const phrase = generatePhrase()
-    paragraph.append(phrase)
-    this.placeCaret(phrase)
+    let nextPhrase = phrase.nextElementSibling
+    if (!nextPhrase) {
+      nextPhrase = generatePhrase()
+      paragraph.insertBefore(nextPhrase, phrase.nextSibling)
+    }
+
+    this.placeCaret(nextPhrase)
   }
 }
 
