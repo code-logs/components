@@ -117,12 +117,25 @@ const Whiteboard = ({ snippets }: WhiteboardProps) => {
     Caret.placeCaret(lastAnchorNode, lastAnchorOffset)
   }
 
-  const appendNewSnippet = (snippet: Snippet) => {
-    if (!lastParentElement || !lastAnchorNode?.textContent) return
+  const injectNewSnippet = (snippet: Snippet) => {
+    if (
+      !lastParentElement ||
+      !lastAnchorNode?.textContent ||
+      lastAnchorOffset === null
+    ) {
+      return
+    }
 
+    const textContent = lastAnchorNode.textContent
+    const frontTextNode = new Text(textContent.slice(0, lastAnchorOffset - 1))
+    const rearTextNode = new Text(textContent.slice(lastAnchorOffset))
     const snippetElement = generateSnippet(snippet)
-    lastParentElement.insertBefore(snippetElement, lastAnchorNode.nextSibling)
-    lastAnchorNode.textContent = lastAnchorNode.textContent.replace(/:$/, '')
+
+    lastParentElement.insertBefore(frontTextNode, lastAnchorNode)
+    lastParentElement.insertBefore(snippetElement, lastAnchorNode)
+    lastParentElement.insertBefore(rearTextNode, lastAnchorNode)
+
+    lastParentElement.removeChild(lastAnchorNode)
 
     Caret.placeCaret(snippetElement)
   }
@@ -154,7 +167,7 @@ const Whiteboard = ({ snippets }: WhiteboardProps) => {
             if (!snippet) {
               restoreCaret()
             } else {
-              appendNewSnippet(snippet)
+              injectNewSnippet(snippet)
             }
 
             setLastParentElement(null)
