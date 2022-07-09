@@ -25,7 +25,8 @@
       border-bottom: 1px solid #ccc;
       outline: none;
 
-      &.focus {
+      &.focus,
+      &:hover {
         color: white;
         background-color: #ccc;
       }
