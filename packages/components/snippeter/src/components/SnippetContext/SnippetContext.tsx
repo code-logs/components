@@ -85,7 +85,6 @@ const SnippetContext = ({
         autoFocus
         onChange={onKeyChangeHandler}
         onKeyDown={onInputKeyDownHandler}
-        onBlur={() => setVisibility(false)}
       />
 
       <ul>
@@ -94,6 +93,9 @@ const SnippetContext = ({
             tabIndex={-1}
             key={snippet.key}
             className={focusedSnippetIndex === index ? 'focus' : ''}
+            onClick={() => {
+              setChosenSnippet(snippet)
+            }}
           >
             {generateSampleSnippet(snippet)}
           </li>
