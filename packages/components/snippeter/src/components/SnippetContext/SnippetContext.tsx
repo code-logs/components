@@ -77,6 +77,9 @@ const SnippetContext = ({
       }}
       className={visibility ? 'visible' : undefined}
       onKeyDown={onContextKeyDownHandler}
+      onBlur={() => {
+        setVisibility(false)
+      }}
       onTransitionEnd={() => {
         if (!visibility) onContextCloseHandler(chosenSnippet)
       }}
@@ -90,7 +93,6 @@ const SnippetContext = ({
       <ul>
         {foundSnippets.map((snippet, index) => (
           <li
-            tabIndex={-1}
             key={snippet.key}
             className={focusedSnippetIndex === index ? 'focus' : ''}
             onClick={() => {

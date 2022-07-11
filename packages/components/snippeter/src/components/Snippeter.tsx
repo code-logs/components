@@ -1,5 +1,7 @@
+import { Settings as SettingsIcon } from '@mui/icons-material'
 import React, { useState } from 'react'
 import { DEFAULT_SETTINGS } from '../constants'
+import '../styles/snippeter.scss'
 import { Snippet } from '../types'
 import Setting from './Setting/Setting'
 import Whiteboard from './Whiteboard/Whiteboard'
@@ -16,9 +18,11 @@ const Snippeter = ({
   const [isSettingOpened, setIsSettingOpened] = useState(false)
 
   return (
-    <section>
-      <header>
-        <button onClick={() => setIsSettingOpened(true)}>Setting</button>
+    <section className="snippeter">
+      <header className="header">
+        <button type="button" onClick={() => setIsSettingOpened(true)}>
+          <SettingsIcon />
+        </button>
       </header>
 
       {isSettingOpened && (

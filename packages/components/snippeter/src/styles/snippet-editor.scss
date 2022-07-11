@@ -1,8 +1,15 @@
+@import './style.scss';
+
 #snippet-editor {
+  grid-column: 1 / 4;
+
   fieldset {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
+    border-width: var(--snippeter-snippet-editor-border-width, none);
+    border-style: var(--snippeter-snippet-editor-border-style, solid);
+    border-color: var(--snippeter-snippet-editor-border-color, transparent);
   }
 
   .v-label {
@@ -10,19 +17,26 @@
     flex-direction: column;
 
     & > span {
-      font-size: small;
+      font-size: var(--snippeter-snippet-editor-label-font-size, 13px);
+      color: var(
+        --snippeter-snippet-editor-label-font-color,
+        var(--snippeter-theme-black-color)
+      );
       margin-bottom: 5px;
     }
 
     & > input,
     select {
-      padding: 0;
+      padding: 0 5px;
       margin: 0;
-      box-sizing: border-box;
       height: 25px;
       outline: none;
-      border: none;
-      border-bottom: 1px solid #999;
+      border-width: var(--snippeter-snippet-editor-input-border-width, 1px);
+      border-style: var(--snippeter-snippet-editor-input-border-style, solid);
+      border-color: var(
+        --snippeter-snippet-editor-input-border-color,
+        var(--snippeter-theme-shade-color)
+      );
     }
     & > input[type='color'] {
       width: 100%;
@@ -32,8 +46,50 @@
     }
   }
 
-  input[type='submit'] {
+  button.save-button {
     margin: auto 0 auto auto;
+    border-radius: var(
+      --snippeter-snippet-editor-save-button-border-radius,
+      $snippeter-border-radius
+    );
     grid-column: 3;
+    display: flex;
+    padding: 5px;
+    gap: 5px;
+    background-color: var(
+      --snippeter-snippet-editor-save-button-bg-color,
+      transparent
+    );
+    border-width: var(--snippeter-snippet-editor-save-button-border-width, 1px);
+    border-style: var(
+      --snippeter-snippet-editor-save-button-border-style,
+      solid
+    );
+    border-color: var(
+      --snippeter-snippet-editor-save-button-border-color,
+      var(--snippeter-theme-shade-color)
+    );
+    box-shadow: var(
+      --snippeter-snippet-editor-box-shadow,
+      $snippeter-box-shadow
+    );
+
+    &:active {
+      box-shadow: none;
+      transform: translate(1px, 1px);
+    }
+
+    & > svg,
+    span {
+      margin: auto 0;
+      color: var(
+        --snippeter-setting-editor-button-color,
+        var(--snippeter-theme-black-color)
+      );
+    }
+
+    & > svg {
+      font-size: small;
+    }
   }
 }

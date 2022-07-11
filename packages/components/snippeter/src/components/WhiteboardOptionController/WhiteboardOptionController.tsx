@@ -1,36 +1,48 @@
+import {
+  FormatSize as FontSizeIcon,
+  LineWeight as LineHeightIcon,
+} from '@mui/icons-material'
 import React, { ChangeEvent } from 'react'
 import '../../styles/whiteboard-option-controller.scss'
 
 export interface WhiteboardOptionControllerProps {
+  fontSize: number
+  lineHeight: number
   onFontSizeChangeHandler: (fontSize: number) => void
   onLineHeightChangeHandler: (lineHeight: number) => void
 }
 
 const WhiteboardOptionController = ({
+  fontSize,
+  lineHeight,
   onFontSizeChangeHandler,
   onLineHeightChangeHandler,
 }: WhiteboardOptionControllerProps) => {
   return (
-    <section id="snippeter-whiteboard-option-controller">
-      <label>
-        <span>Font Size</span>
+    <section className="snippeter-whiteboard-option-controller">
+      <div className="option">
+        <FontSizeIcon />
         <input
           type="number"
+          autoFocus
+          defaultValue={fontSize}
           onChange={(event: ChangeEvent<HTMLInputElement>) => {
             onFontSizeChangeHandler(Number(event.currentTarget.value))
           }}
         />
-      </label>
+      </div>
 
-      <label>
-        <span>Line Height</span>
+      <div className="option">
+        <LineHeightIcon />
         <input
           type="number"
+          autoFocus
+          defaultValue={lineHeight}
           onChange={(event: ChangeEvent<HTMLInputElement>) => {
             onLineHeightChangeHandler(Number(event.currentTarget.value))
           }}
         />
-      </label>
+      </div>
     </section>
   )
 }

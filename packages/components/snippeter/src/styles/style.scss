@@ -1,0 +1,15 @@
+:root {
+  --snippeter-primary-color: #ffffff;
+  --snippeter-theme-white-color: #dadde2;
+  --snippeter-theme-shade-color: #b1bdc5;
+  --snippeter-theme-black-color: #3b3b3b;
+  --snippeter-theme-warn-color: #ffbe6b;
+}
+
+$snippeter-transparent-border: 1px solid transparent;
+$snippeter-border-radius: 4px;
+
+$snippeter-box-shadow: 2px 2px 3px var(--snippeter-theme-shade-color);
+
+$snippeter-icon-button-color: var(--snippeter-theme-shade-color);
+$snippeter-icon-button-size: 20px;

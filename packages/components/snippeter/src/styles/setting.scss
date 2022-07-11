@@ -1,3 +1,5 @@
+@import './style.scss';
+
 #snippeter-setting {
   opacity: 0;
   transition: opacity 0.3s ease-out 0s;
@@ -13,15 +15,18 @@
     top: 0;
     height: 100vh;
     width: 100vw;
-
     background-color: rgba(0, 0, 0, 0.2);
   }
 
   & #setting {
-    padding: 10px;
-    border-radius: 4px;
+    padding: var(--snippeter-setting-padding, 20px);
+    border-radius: var(
+      --snippeter-setting-board-radius,
+      $snippeter-border-radius
+    );
+    box-shadow: var(--snippeter-setting-box-shadow, $snippeter-box-shadow);
     position: fixed;
-    background-color: #fff;
+    background-color: var(--snippeter-setting-bg-color, #fff);
     min-width: 60%;
     max-width: 80%;
     max-height: 80%;
@@ -32,24 +37,46 @@
 
     & .main-header {
       display: flex;
+      border-bottom: 1px solid var(--snippeter-theme-shade-color);
     }
 
     & .title {
       margin: 0;
       padding: 5px 0;
       flex: 1;
+      font-weight: var(--snippeter-setting-title-font-weight, 500);
+      color: var(
+        --snippeter-setting-title-color,
+        var(--snippeter-theme-black-color)
+      );
     }
 
     & #close-button {
       background-color: transparent;
       border: none;
       float: right;
+
+      & > svg {
+        color: var(
+          --snippeter-setting-close-icon-button-color,
+          var(--snippeter-theme-black-color)
+        );
+        font-size: var(
+          --snippeter-setting-close-icon-button-size,
+          $snippeter-icon-button-size
+        );
+      }
     }
 
     & .subtitle {
       margin: 0;
       padding: 5px 0;
       font-size: smaller;
+      font-weight: var(--snippeter-setting-title-font-weight, 500);
+      color: var(
+        --snippeter-setting-subtitle-color,
+        var(--snippeter-theme-black-color)
+      );
     }
 
     & #my-snippet-list {
@@ -59,42 +86,64 @@
       & > .my-snippet-list-item {
         display: grid;
         grid-template-columns: 1fr auto auto;
-        gap: 5px;
         margin: 5px 0;
         padding: 5px 0;
-        border-bottom: 1px solid #ccc;
+        border-width: var(
+          --snippeter-setting-list-item-border-width,
+          0 0 1px 0
+        );
+        border-style: var(--snippeter-setting-list-item-border-style, solid);
+        border-color: var(
+          --snippeter-setting-list-item-color,
+          var(--snippeter-theme-shade-color)
+        );
 
         & .button {
           margin: auto;
-        }
+          border: none;
+          background-color: transparent;
 
-        & > span {
-          flex: 1;
-        }
-
-        & > form {
-          grid-column: 1 / 4;
+          & > svg {
+            color: var(
+              --snippeter-setting-list-item-icon-button-color,
+              $snippeter-icon-button-color
+            );
+            font-size: var(
+              --snippeter-setting-list-item-icon-button-size,
+              $snippeter-icon-button-size
+            );
+          }
         }
       }
     }
 
     & #no-snippet-message {
+      padding: 40px 10px;
       display: flex;
       flex-direction: column;
       border: 1px solid #888;
       border-left: none;
       border-right: none;
-      padding: 10px;
-      color: #888;
 
       & > strong {
-        color: #000;
         margin-bottom: 5px;
+        color: var(
+          --snippeter-setting-no-snippet-title-color,
+          var(--snippeter-theme-black-color)
+        );
       }
 
       & > span {
         margin-left: 10px;
+        color: var(
+          --snippeter-setting-no-snippet-message-color,
+          var(--snippeter-theme-black-color)
+        );
       }
+    }
+
+    & #add-snippet {
+      margin-top: 20px;
     }
   }
 }

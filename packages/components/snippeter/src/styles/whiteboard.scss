@@ -1,9 +1,17 @@
-#snippeter-whiteboard {
-  & #whiteboard {
-    padding: 10px;
-    border: 1px solid #666;
-    background-color: #fff;
+@import './style.scss';
+
+.snippeter-whiteboard {
+  & .whiteboard {
+    padding: var(--snippeter-white-board-padding, 10px);
+    background-color: var(--snippeter-white-board-bg-color, #fff);
+    border-radius: var(--snippeter-border-radius, $snippeter-border-radius);
+    border: var(
+      --snippeter-white-board-border,
+      1px solid var(--snippeter-theme-shade-color)
+    );
     outline: none;
+    height: var(--snippeter-white-board-height, 200px);
+    overflow: auto;
 
     & * {
       outline: none;
@@ -11,23 +19,17 @@
 
     & > p[snippeter-paragraph] {
       margin: 0;
-      min-height: 16px;
-      border: 1px solid red;
-      padding: 5px 0;
+      border: var(--snippeter-paragraph-border, 1px solid transparent);
 
       & > span[snippeter-phrase] {
-        border: 1px solid green;
+        border: var(--snippeter-phrase-border, 1px solid transparent);
         display: inline-block;
         min-width: 1px;
-        min-height: inherit;
-        padding: 5px 0;
       }
 
       & [snippet] {
-        border: 1px solid blue;
+        border: var(--snippeter-border, 1px solid transparent);
         display: inline-block;
-        min-height: 16px;
-        padding: 5px 0;
       }
     }
   }

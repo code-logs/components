@@ -1,7 +1,21 @@
+@import './style.scss';
+
 #snippeter-snippet-context {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  background-color: var(
+    --snippeter-context-bg-color,
+    var(--snippeter-theme-primary-color)
+  );
+  border-width: var(--snippeter-context-border-width, 1px);
+  border-style: var(--snippeter-context-border-style, solid);
+  border-color: var(
+    --snippeter-context-border-color,
+    var(--snippeter-theme-black-color)
+  );
+  box-shadow: var(--snippeter-context-box-shadow, $snippeter-box-shadow);
+  border-radius: var(
+    --snippeter-context-border-radius,
+    $snippeter-border-radius
+  );
   opacity: 0;
   transition: opacity 0.1s ease-out 0s;
 
@@ -22,13 +36,20 @@
     li {
       display: flex;
       padding: 5px;
-      border-bottom: 1px solid #ccc;
       outline: none;
+      border-width: var(--snippeter-context-item-border-width, 1px 0 0 0);
+      border-style: var(--snippeter-context-item-border-style, dashed);
+      border-color: var(
+        --snippeter-context-item-border-color,
+        var(--snippeter-theme-shade-color)
+      );
 
       &.focus,
       &:hover {
-        color: white;
-        background-color: #ccc;
+        background-color: var(
+          --snippeter-context-bg-color-active,
+          var(--snippeter-theme-white-color)
+        );
       }
     }
 

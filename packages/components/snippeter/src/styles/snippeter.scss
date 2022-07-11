@@ -1,0 +1,33 @@
+@import './style.scss';
+
+.snippeter {
+  box-sizing: border-box;
+  border: var(--snippeter-border, $snippeter-transparent-border);
+  border-radius: var(--snippeter-border-radius, $snippeter-border-radius);
+  padding: var(--snippeter-padding, 10px);
+  box-shadow: var(--snippeter-box-shadow);
+  background-color: var(--snippeter-bg-color, var(--snippeter-primary-color));
+
+  & > .header {
+    display: grid;
+    justify-content: end;
+
+    & > button {
+      display: grid;
+      border: none;
+      background-color: transparent;
+      outline: none;
+    }
+
+    & > button > svg {
+      color: var(
+        --snippeter-header-icon-button-color,
+        $snippeter-icon-button-color
+      );
+      font-size: var(
+        --snippeter-header-icon-button-size,
+        $snippeter-icon-button-size
+      );
+    }
+  }
+}

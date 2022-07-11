@@ -31,8 +31,8 @@ export interface WhiteboardProps {
 const Whiteboard = ({ snippets }: WhiteboardProps) => {
   const whiteboardRef = useRef<HTMLDivElement>(null)
 
-  const [commonFontSize, setCommonFontSize] = useState<number | null>(null)
-  const [commonLineHeight, setCommonLineHeight] = useState<number | null>(null)
+  const [commonFontSize, setCommonFontSize] = useState(16)
+  const [commonLineHeight, setCommonLineHeight] = useState(18)
 
   const [lastAnchorOffset, setLastAnchorOffset] = useState<number | null>(null)
   const [lastAnchorNode, setLastAnchorNode] = useState<Node | null>(null)
@@ -150,8 +150,10 @@ const Whiteboard = ({ snippets }: WhiteboardProps) => {
   }
 
   return (
-    <section id="snippeter-whiteboard">
+    <section className="snippeter-whiteboard">
       <WhiteboardOptionController
+        fontSize={commonFontSize}
+        lineHeight={commonLineHeight}
         onFontSizeChangeHandler={setCommonFontSize}
         onLineHeightChangeHandler={setCommonLineHeight}
       />
@@ -178,7 +180,7 @@ const Whiteboard = ({ snippets }: WhiteboardProps) => {
       )}
 
       <div
-        id="whiteboard"
+        className="whiteboard"
         style={computeWhiteboardStyle()}
         ref={whiteboardRef}
         contentEditable
