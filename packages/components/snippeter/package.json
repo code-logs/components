@@ -16,7 +16,7 @@
   "scripts": {
     "lint": "eslint",
     "prettier": "prettier --write",
-    "build": "webpack --config ./webpack.config.js && yarn emit:types",
+    "build": "npm run clean && webpack --config ./webpack.config.js && yarn emit:types",
     "emit:types": "tsc --emitDeclarationOnly",
     "clean": "rm -rf ./dist"
   },

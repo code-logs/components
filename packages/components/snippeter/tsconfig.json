@@ -13,5 +13,5 @@
     "allowSyntheticDefaultImports": true,
     "outDir": "dist"
   },
-  "exclude": ["stories", "dist"]
+  "include": ["src"]
 }
