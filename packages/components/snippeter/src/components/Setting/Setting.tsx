@@ -1,4 +1,10 @@
 import React, { KeyboardEvent, useCallback, useEffect, useState } from 'react'
+import {
+  Close as CloseIcon,
+  ExpandMore as ExpandMoreIcon,
+  ExpandLess as ExpandLessIcon,
+  Delete as DeleteIcon,
+} from '@mui/icons-material'
 import '../../styles/setting.scss'
 import { Snippet } from '../../types'
 import { generateSampleSnippet } from '../../utils/generate-snippet'
@@ -66,7 +72,7 @@ const Setting = ({
         <header className="main-header">
           <h1 className="title">Setting</h1>
           <button id="close-button" type="button" onClick={closeModal}>
-            X
+            <CloseIcon />
           </button>
         </header>
 
@@ -91,7 +97,7 @@ const Setting = ({
                           setToggledSnippetKey(null)
                         }}
                       >
-                        Close
+                        <ExpandLessIcon />
                       </button>
                     ) : (
                       <button
@@ -101,11 +107,11 @@ const Setting = ({
                           setToggledSnippetKey(key)
                         }}
                       >
-                        Detail
+                        <ExpandMoreIcon />
                       </button>
                     )}
                     <button
-                      className="button"
+                      className="button delete-button"
                       type="button"
                       onClick={() => {
                         if (confirm(`Are you sure to delete ${key} snippet?`)) {
@@ -114,7 +120,7 @@ const Setting = ({
                         }
                       }}
                     >
-                      Delete
+                      <DeleteIcon />
                     </button>
 
                     {key === toggledSnippetKey && (

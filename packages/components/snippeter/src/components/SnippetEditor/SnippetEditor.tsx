@@ -1,5 +1,6 @@
 import React, { FormEvent, useRef } from 'react'
 import { Snippet } from '../../types'
+import Check from '@mui/icons-material/Check'
 import '../../styles/snippet-editor.scss'
 
 export interface SnippetEditorProps {
@@ -116,7 +117,10 @@ const SnippetEditor = ({
         </label>
 
         {actionTitle && onActionClickHandler && (
-          <input type="submit" value={actionTitle} />
+          <button className="save-button" type="submit">
+            <Check />
+            <span>{actionTitle}</span>
+          </button>
         )}
       </fieldset>
     </form>

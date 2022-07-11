@@ -1,21 +1,56 @@
-#snippeter-whiteboard-option-controller {
-  display: flex;
-  border: 1px solid black;
-  border-bottom: none;
-  padding: 5px;
-  gap: 10px;
+@import './style.scss';
 
-  & label {
+.snippeter-whiteboard-option-controller {
+  display: flex;
+  border-bottom: none;
+  padding: 5px 0;
+
+  & .option {
     display: flex;
-    flex-direction: column;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    border-left: 1px solid var(--snippeter-theme-shade-color);
     gap: 5px;
-    margin-bottom: 5px;
-    font-size: smaller;
+
+    &:first-child {
+      border-left: none;
+
+      & > svg {
+        margin-left: 0;
+      }
+    }
+
+    & > svg {
+      color: var(
+        --snippeter-controller-icon-button-color,
+        var(--snippeter-theme-shade-color)
+      );
+      font-size: var(
+        --snippeter-controller-icon-button-size,
+        $snippeter-icon-button-size
+      );
+      margin-left: 5px;
+    }
   }
 
   & input {
     border: none;
-    border-bottom: 1px solid #ccc;
-    font-size: smaller;
+    outline: none;
+    border: var(
+      --snippeter-controller-input-border,
+      $snippeter-transparent-border
+    );
+    border-radius: var(
+      --snippeter-controller-input-border-radius,
+      $snippeter-border-radius
+    );
+    width: 40px;
+    margin-right: 5px;
+    color: var(
+      --snippeter-controller-input-color,
+      var(--snippeter-theme-shade-color)
+    );
+    text-align: center;
   }
 }
