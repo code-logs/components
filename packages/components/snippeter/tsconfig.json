@@ -6,12 +6,12 @@
     "strict": true,
     "module": "ESNext",
     "declaration": true,
-    "rootDir": "src",
     "baseUrl": "src",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "moduleResolution": "Node",
     "allowSyntheticDefaultImports": true,
     "outDir": "dist"
-  }
+  },
+  "exclude": ["stories", "dist"]
 }
