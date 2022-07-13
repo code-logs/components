@@ -1,15 +1,15 @@
-import React from 'react'
-import Wysiwyg from '@code-logs/wysiwyg'
 import './styles/global.scss'
+import Snippeter, { Snippet } from '@code-logs/snippeter'
+import { useState } from 'react'
 
 function App() {
+  const [snippets, setSnippets] = useState<Snippet[]>([])
+
   return (
     <div className="App">
       <header className="App-header"></header>
       <main>
-        <div id="wysiwyg-container">
-          <Wysiwyg />
-        </div>
+        <Snippeter onSnippetsChangeHandler={setSnippets} />
       </main>
     </div>
   )
