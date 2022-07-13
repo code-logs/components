@@ -1,26 +1,91 @@
+@import './style.scss';
+
 $transition-duration: 0.3s;
+$default-border-width: 0px;
+$default-border-style: solid;
 
 .menu-items {
+  z-index: 10;
   position: absolute;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  height: 0;
-  transition-property: left, height;
+  transition-property: left;
   transition-duration: $transition-duration;
   transition-timing-function: ease-in-out;
-  transition-delay: 0s;
+  height: 0;
 
-  &.visible {
-    height: var(--menubar-menu-item-height, 100px);
-    transition-property: left, height;
-    transition-duration: $transition-duration;
-    transition-timing-function: ease-in-out;
-    transition-delay: 0s;
+  & .list-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    margin: var(--menubar-menu-item-margin, 10px 0 0 0);
+
+    border-width: var(--menubar-menu-item-border-width, $default-border-width);
+    border-style: var(--menubar-menu-item-border-style, $default-border-style);
+    border-color: transparent;
+    border-radius: var(--menubar-menu-item-border-radius, 6px);
+    transition: border $transition-duration ease-in-out;
   }
 
-  & > .menu-item.active {
-    background-color: black;
-    color: white;
+  &.visible .list-wrapper {
+    border: var(--menubar-menu-item-border-width, $default-border-width)
+      var(--menubar-menu-item-border-style, $default-border-style)
+      var(--menubar-menu-item-border-color, $menubar-theme-gray-color);
+    transition: border $transition-duration ease-in-out;
+  }
+
+  & .menu-item-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    overflow: hidden;
+    transition-property: height;
+    transition-duration: $transition-duration;
+    transition-timing-function: ease-in-out;
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--menubar-menu-item-gap, 0);
+
+    height: 0;
+
+    font-size: var(--menubar-menu-item-font-size, 1rem);
+
+    & li {
+      padding: var(--menubar-menu-item-padding, 10px);
+      background-color: var(--menubar-menu-item-bg-color, #fff);
+      border-radius: var(--menubar-menu-item-border-radius, 6px);
+
+      a {
+        text-decoration: none;
+        color: var(--menubar-menu-item--font-color, #000);
+      }
+
+      &.active,
+      &:hover,
+      &:focus {
+        background-color: var(
+          --menubar-menu-item-hover-bg-color,
+          $menubar-theme-gray-color
+        );
+
+        & a {
+          color: var(--menubar-menu-item-hover-font-color, #000);
+        }
+      }
+
+      &:active {
+        transform: translate(1px, 1px);
+      }
+    }
+  }
+
+  &.visible .menu-item-list {
+    transition-property: height;
+    transition-duration: $transition-duration;
+    transition-timing-function: ease-in-out;
+
+    height: 100%;
   }
 }

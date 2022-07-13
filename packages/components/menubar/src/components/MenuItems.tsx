@@ -43,22 +43,29 @@ const MenuItems = ({
       className={`menu-items ${visibility ? 'visible' : ''}`}
       style={{ left: positionX, top: positionY }}
     >
-      {menus.map(({ name, route }) => {
-        return (
-          <a
-            className={`menu-item ${activatedRoute === route ? 'active' : ''}`}
-            key={route}
-            href={route}
-            onClick={(event: MouseEvent<HTMLAnchorElement>) => {
-              event.preventDefault()
-              onRoute(route)
-              setActivatedRoute(route)
-            }}
-          >
-            {name}
-          </a>
-        )
-      })}
+      <div className="list-wrapper">
+        <ul className="menu-item-list">
+          {menus.map(({ name, route }) => {
+            return (
+              <li
+                key={route}
+                className={activatedRoute === route ? 'active' : ''}
+              >
+                <a
+                  href={route}
+                  onClick={(event: MouseEvent<HTMLAnchorElement>) => {
+                    event.preventDefault()
+                    onRoute(route)
+                    setActivatedRoute(route)
+                  }}
+                >
+                  {name}
+                </a>
+              </li>
+            )
+          })}
+        </ul>
+      </div>
     </div>
   )
 }
