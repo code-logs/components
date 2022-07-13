@@ -1,8 +1,33 @@
+@import './style.scss';
+
 .menubar {
   overflow: auto;
   display: flex;
   gap: var(--menubar-group-menu-gap, 10px);
   max-width: var(--menubar-max-width, 100%);
+
+  & > button {
+    padding: var(--menubar-group-menu-padding, 10px);
+    border: var(--menubar-group-menu-border, none);
+    border-radius: var(--menubar-group-menu-border-radius, 6px);
+    background-color: var(--menubar-group-menu-bg-color, transparent);
+    color: var(--menubar-group-menu-font-color, #000);
+    font-size: var(--menubar-group-menu-font-size, 1rem);
+    transition: background-color 0.3s ease-in-out 0s;
+
+    &:hover,
+    &:focus {
+      background-color: var(
+        --menubar-group-menu-hover-bg-color,
+        $menubar-theme-gray-color
+      );
+      transition: background-color 0.3s ease-in-out 0s;
+      color: var(--menubar-group-menu-hover-font-color, #000);
+    }
+    &:active {
+      transform: translate(1px, 1px);
+    }
+  }
 
   &.align-left {
     justify-content: left;
