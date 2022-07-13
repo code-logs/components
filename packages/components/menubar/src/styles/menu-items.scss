@@ -1,0 +1,26 @@
+$transition-duration: 0.3s;
+
+.menu-items {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 0;
+  transition-property: left, height;
+  transition-duration: $transition-duration;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+
+  &.visible {
+    height: var(--menubar-menu-item-height, 100px);
+    transition-property: left, height;
+    transition-duration: $transition-duration;
+    transition-timing-function: ease-in-out;
+    transition-delay: 0s;
+  }
+
+  & > .menu-item.active {
+    background-color: black;
+    color: white;
+  }
+}
