@@ -1,5 +1,5 @@
 {
-  "name": "@code-logs/{{kebabCase name}}",
+  "name": "@code-logs/menubar",
   "author": {
     "name": "Jay Lee",
     "email": "jaylee.possible@gmail.com",
@@ -11,7 +11,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/code-logs/post-it",
-    "directory": "packages/components/{{kebabCase name}}"
+    "directory": "packages/components/menubar"
   },
   "scripts": {
     "lint": "eslint",
@@ -27,6 +27,7 @@
     "@babel/preset-typescript": "^7.17.12",
     "@storybook/react": "^6.5.9",
     "@types/react": "^18.0.14",
+    "@types/react-router-dom": "^5.3.3",
     "@typescript-eslint/eslint-plugin": "^5.29.0",
     "@typescript-eslint/parser": "^5.29.0",
     "babel-loader": "^8.2.5",

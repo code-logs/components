@@ -1,0 +1,18 @@
+.menubar {
+  overflow: auto;
+  display: flex;
+  gap: var(--menubar-group-menu-gap, 10px);
+  max-width: var(--menubar-max-width, 100%);
+
+  &.align-left {
+    justify-content: left;
+  }
+
+  &.align-center {
+    justify-content: center;
+  }
+
+  &.align-right {
+    justify-content: right;
+  }
+}
