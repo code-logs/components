@@ -1,32 +1,24 @@
 import { useEffect, useState } from 'react'
 import { Repository } from '../../types'
-import GithubApi from '../../utils/github-api'
 
 export interface GithubRepositorySelectorProps {
+  repositories: Repository[]
   onRepositoryChangeHandler: (owner: string, repo: string) => void
 }
 
 const GithubRepositorySelector = ({
+  repositories,
   onRepositoryChangeHandler,
 }: GithubRepositorySelectorProps) => {
-  const [repositories, setRepositories] = useState<Repository[]>([])
   const [selectedRepo, setSelectedRepo] = useState<Repository | null>(null)
 
-  useEffect(() => {
-    GithubApi.repositories().then((repositories) => {
-      if (!repositories.length) return
-      if (!selectedRepo) setSelectedRepo(repositories[0])
-      setRepositories(repositories)
-    })
-  }, [selectedRepo])
+  useEffect(() => {}, [selectedRepo])
 
   useEffect(() => {
     if (!selectedRepo) return
 
     onRepositoryChangeHandler(selectedRepo.owner.login, selectedRepo.name)
   }, [onRepositoryChangeHandler, selectedRepo])
-
-  if (!repositories.length) return <></>
 
   return (
     <select

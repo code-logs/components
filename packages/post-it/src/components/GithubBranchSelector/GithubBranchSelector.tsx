@@ -1,20 +1,10 @@
-import { useEffect, useState } from 'react'
 import { Branch } from '../../types'
-import GithubApi from '../../utils/github-api'
 
 export interface GithubBranchSelectorProps {
-  owner: string | null
-  repo: string | null
+  branches: Branch[]
 }
 
-const GithubBranchSelector = ({ owner, repo }: GithubBranchSelectorProps) => {
-  const [branches, setBranches] = useState<Branch[]>([])
-
-  useEffect(() => {
-    if (!owner || !repo) return
-    GithubApi.branches(owner, repo).then(setBranches)
-  }, [owner, repo])
-
+const GithubBranchSelector = ({ branches }: GithubBranchSelectorProps) => {
   return (
     <select disabled={!branches.length}>
       {branches.map((branch) => (
