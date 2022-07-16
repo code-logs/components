@@ -1,0 +1,15 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--common-spacing);
+
+  & > img {
+    margin: 0 auto 20px auto;
+  }
+}
+
+.configurations {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wide-spacing);
+}

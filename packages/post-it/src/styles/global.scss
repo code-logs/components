@@ -1,23 +1,40 @@
-@import '@code-logs/snippeter/dist/main.css';
-@import './normalize.css';
-
 :root {
-  --white-board-bg-color: #fff;
+  --common-spacing: 10px;
+  --wide-spacing: 20px;
 
-  --common-space: 10px;
+  --theme-black-color: #394955;
+  --theme-shade-color: #9caebc;
 }
 
-html,
 body {
-  width: 100%;
-  height: 100%;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+h1 {
   margin: 0;
 }
 
-body {
-  background-color: #252d3e;
+h2 {
+  font-size: 20px;
 }
 
-main {
-  padding: var(--common-space);
+label.vertical {
+  display: flex;
+  flex-direction: column;
+  margin: auto 0;
+
+  & > span {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--theme-black-color);
+  }
+}
+
+input,
+select {
+  border-width: 0 0 1px 0;
+  border-color: var(--theme-shade-color);
+  outline: none;
+  font-size: 0.9rem;
+  padding: 10px 0;
 }

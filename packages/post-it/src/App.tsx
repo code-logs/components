@@ -1,17 +1,32 @@
+import Menubar from '@code-logs/menubar'
+import { Route, Routes, useNavigate } from 'react-router-dom'
+import AppTitle from './components/AppTitle/AppTitle'
+import { menus } from './constants'
+import Home from './pages/Home'
+import NewPost from './pages/NewPost'
+import RepositorySetting from './pages/RepositorySetting/RepositorySetting'
 import './styles/global.scss'
-import Snippeter, { Snippet } from '@code-logs/snippeter'
-import { useState } from 'react'
+import './styles/layout.scss'
 
-function App() {
-  const [snippets, setSnippets] = useState<Snippet[]>([])
+const App = () => {
+  const navigate = useNavigate()
 
   return (
-    <div className="App">
-      <header className="App-header"></header>
+    <>
+      <header>
+        <nav>
+          <AppTitle />
+          <Menubar menus={menus} onRoute={(route) => navigate(route)} />
+        </nav>
+      </header>
       <main>
-        <Snippeter onSnippetsChangeHandler={setSnippets} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/new-post" element={<NewPost />} />
+          <Route path="/settings/repository" element={<RepositorySetting />} />
+        </Routes>
       </main>
-    </div>
+    </>
   )
 }
 
