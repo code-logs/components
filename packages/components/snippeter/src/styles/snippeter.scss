@@ -14,6 +14,9 @@
   border-radius: var(--snippeter-border-radius);
   padding: var(--snippeter-padding);
   background-color: var(--snippeter-bg-color);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 
   & > .header {
     display: grid;
