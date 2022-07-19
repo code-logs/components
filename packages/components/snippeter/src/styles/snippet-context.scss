@@ -1,21 +1,23 @@
-@import './style.scss';
+:root {
+  --snippeter-context-bg-color: var(--snippeter-theme-primary-color);
+  --snippeter-context-border-width: 1px;
+  --snippeter-context-border-style: solid;
+  --snippeter-context-border-color: var(--snippeter-theme-black-color);
+  --snippeter-context-box-shadow: 2px 2px 3px var(--snippeter-theme-shade-color);
+  --snippeter-context-border-radius: 4px;
+  --snippeter-context-item-border-width: 1px 0 0 0;
+  --snippeter-context-item-border-style: dashed;
+  --snippeter-context-item-border-color: var(--snippeter-theme-shade-color);
+  --snippeter-context-bg-color-active: var(--snippeter-theme-white-color);
+}
 
 #snippeter-snippet-context {
-  background-color: var(
-    --snippeter-context-bg-color,
-    var(--snippeter-theme-primary-color)
-  );
-  border-width: var(--snippeter-context-border-width, 1px);
-  border-style: var(--snippeter-context-border-style, solid);
-  border-color: var(
-    --snippeter-context-border-color,
-    var(--snippeter-theme-black-color)
-  );
-  box-shadow: var(--snippeter-context-box-shadow, $snippeter-box-shadow);
-  border-radius: var(
-    --snippeter-context-border-radius,
-    $snippeter-border-radius
-  );
+  background-color: var(--snippeter-context-bg-color);
+  border-width: var(--snippeter-context-border-width);
+  border-style: var(--snippeter-context-border-style);
+  border-color: var(--snippeter-context-border-color);
+  box-shadow: var(--snippeter-context-box-shadow);
+  border-radius: var(--snippeter-context-border-radius);
   opacity: 0;
   transition: opacity 0.1s ease-out 0s;
 
@@ -37,19 +39,13 @@
       display: flex;
       padding: 5px;
       outline: none;
-      border-width: var(--snippeter-context-item-border-width, 1px 0 0 0);
-      border-style: var(--snippeter-context-item-border-style, dashed);
-      border-color: var(
-        --snippeter-context-item-border-color,
-        var(--snippeter-theme-shade-color)
-      );
+      border-width: var(--snippeter-context-item-border-width);
+      border-style: var(--snippeter-context-item-border-style);
+      border-color: var(--snippeter-context-item-border-color);
 
       &.focus,
       &:hover {
-        background-color: var(
-          --snippeter-context-bg-color-active,
-          var(--snippeter-theme-white-color)
-        );
+        background-color: var(--snippeter-context-bg-color-active);
       }
     }
 

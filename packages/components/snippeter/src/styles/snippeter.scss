@@ -1,12 +1,19 @@
-@import './style.scss';
+:root {
+  --snippeter-border: 1px solid transparent;
+  --snippeter-border-radius: 4px;
+  --snippeter-padding: 10px;
+  --snippeter-box-shadow: 2px 2px 3px var(--snippeter-theme-shade-color);
+  --snippeter-bg-color: var(--snippeter-primary-color);
+  --snippeter-header-icon-button-color: var(--snippeter-theme-shade-color);
+  --snippeter-header-icon-button-size: 20px;
+}
 
 .snippeter {
   box-sizing: border-box;
-  border: var(--snippeter-border, $snippeter-transparent-border);
-  border-radius: var(--snippeter-border-radius, $snippeter-border-radius);
-  padding: var(--snippeter-padding, 10px);
-  box-shadow: var(--snippeter-box-shadow);
-  background-color: var(--snippeter-bg-color, var(--snippeter-primary-color));
+  border: var(--snippeter-border);
+  border-radius: var(--snippeter-border-radius);
+  padding: var(--snippeter-padding);
+  background-color: var(--snippeter-bg-color);
 
   & > .header {
     display: grid;
@@ -20,14 +27,8 @@
     }
 
     & > button > svg {
-      color: var(
-        --snippeter-header-icon-button-color,
-        $snippeter-icon-button-color
-      );
-      font-size: var(
-        --snippeter-header-icon-button-size,
-        $snippeter-icon-button-size
-      );
+      color: var(--snippeter-header-icon-button-color);
+      font-size: var(--snippeter-header-icon-button-size);
     }
   }
 }

@@ -24,7 +24,6 @@ const WhiteboardOptionController = ({
         <FontSizeIcon />
         <input
           type="number"
-          autoFocus
           defaultValue={fontSize}
           onChange={(event: ChangeEvent<HTMLInputElement>) => {
             onFontSizeChangeHandler(Number(event.currentTarget.value))
@@ -36,7 +35,6 @@ const WhiteboardOptionController = ({
         <LineHeightIcon />
         <input
           type="number"
-          autoFocus
           defaultValue={lineHeight}
           onChange={(event: ChangeEvent<HTMLInputElement>) => {
             onLineHeightChangeHandler(Number(event.currentTarget.value))
