@@ -26,6 +26,7 @@ Default.args = {
     location.search.indexOf(route.replace(/^\//, '')) >= 0,
   onRoute: console.log,
   menus: [
+    { name: '1 Depth Menu', route: '/one-depth-menu' },
     {
       name: 'Menu 1',
       subMenus: [
