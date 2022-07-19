@@ -1,4 +1,28 @@
-@import './style.scss';
+:root {
+  --snippeter-setting-padding: 20px;
+  --snippeter-setting-board-radius: 4px;
+  --snippeter-setting-bg-color: #fff;
+  --snippeter-setting-title-font-weight: 500;
+  --snippeter-setting-title-color: var(--snippeter-theme-black-color);
+  --snippeter-setting-close-icon-button-color: var(
+    --snippeter-theme-black-color
+  );
+  --snippeter-setting-close-icon-button-size: 20px;
+  --snippeter-setting-subtitle-color: var(--snippeter-theme-black-color);
+  --snippeter-setting-list-item-border-width: 0 0 1px 0;
+  --snippeter-setting-list-item-border-style: solid;
+  --snippeter-setting-list-item-color: var(--snippeter-theme-shade-color);
+  --snippeter-setting-list-item-icon-button-color: var(
+    --snippeter-theme-shade-color
+  );
+  --snippeter-setting-list-item-icon-button-size: 20px;
+  --snippeter-setting-no-snippet-title-color: var(
+    --snippeter-theme-black-color
+  );
+  --snippeter-setting-no-snippet-message-color: var(
+    --snippeter-theme-black-color
+  );
+}
 
 #snippeter-setting {
   opacity: 0;
@@ -19,14 +43,11 @@
   }
 
   & #setting {
-    padding: var(--snippeter-setting-padding, 20px);
-    border-radius: var(
-      --snippeter-setting-board-radius,
-      $snippeter-border-radius
-    );
-    box-shadow: var(--snippeter-setting-box-shadow, $snippeter-box-shadow);
+    padding: var(--snippeter-setting-padding);
+    border-radius: var(--snippeter-setting-board-radius);
+    box-shadow: var(--snippeter-setting-box-shadow);
+    background-color: var(--snippeter-setting-bg-color);
     position: fixed;
-    background-color: var(--snippeter-setting-bg-color, #fff);
     min-width: 60%;
     max-width: 80%;
     max-height: 80%;
@@ -44,11 +65,8 @@
       margin: 0;
       padding: 5px 0;
       flex: 1;
-      font-weight: var(--snippeter-setting-title-font-weight, 500);
-      color: var(
-        --snippeter-setting-title-color,
-        var(--snippeter-theme-black-color)
-      );
+      font-weight: var(--snippeter-setting-title-font-weight);
+      color: var(--snippeter-setting-title-color);
     }
 
     & #close-button {
@@ -57,14 +75,8 @@
       float: right;
 
       & > svg {
-        color: var(
-          --snippeter-setting-close-icon-button-color,
-          var(--snippeter-theme-black-color)
-        );
-        font-size: var(
-          --snippeter-setting-close-icon-button-size,
-          $snippeter-icon-button-size
-        );
+        color: var(--snippeter-setting-close-icon-button-color);
+        font-size: var(--snippeter-setting-close-icon-button-size);
       }
     }
 
@@ -72,11 +84,8 @@
       margin: 0;
       padding: 5px 0;
       font-size: smaller;
-      font-weight: var(--snippeter-setting-title-font-weight, 500);
-      color: var(
-        --snippeter-setting-subtitle-color,
-        var(--snippeter-theme-black-color)
-      );
+      font-weight: var(--snippeter-setting-title-font-weight);
+      color: var(--snippeter-setting-subtitle-color);
     }
 
     & #my-snippet-list {
@@ -88,15 +97,9 @@
         grid-template-columns: 1fr auto auto;
         margin: 5px 0;
         padding: 5px 0;
-        border-width: var(
-          --snippeter-setting-list-item-border-width,
-          0 0 1px 0
-        );
-        border-style: var(--snippeter-setting-list-item-border-style, solid);
-        border-color: var(
-          --snippeter-setting-list-item-color,
-          var(--snippeter-theme-shade-color)
-        );
+        border-width: var(--snippeter-setting-list-item-border-width);
+        border-style: var(--snippeter-setting-list-item-border-style);
+        border-color: var(--snippeter-setting-list-item-color);
 
         & .button {
           margin: auto;
@@ -104,14 +107,8 @@
           background-color: transparent;
 
           & > svg {
-            color: var(
-              --snippeter-setting-list-item-icon-button-color,
-              $snippeter-icon-button-color
-            );
-            font-size: var(
-              --snippeter-setting-list-item-icon-button-size,
-              $snippeter-icon-button-size
-            );
+            color: var(--snippeter-setting-list-item-icon-button-color);
+            font-size: var(--snippeter-setting-list-item-icon-button-size);
           }
         }
       }
@@ -127,18 +124,12 @@
 
       & > strong {
         margin-bottom: 5px;
-        color: var(
-          --snippeter-setting-no-snippet-title-color,
-          var(--snippeter-theme-black-color)
-        );
+        color: var(--snippeter-setting-no-snippet-title-color);
       }
 
       & > span {
         margin-left: 10px;
-        color: var(
-          --snippeter-setting-no-snippet-message-color,
-          var(--snippeter-theme-black-color)
-        );
+        color: var(--snippeter-setting-no-snippet-message-color);
       }
     }
 

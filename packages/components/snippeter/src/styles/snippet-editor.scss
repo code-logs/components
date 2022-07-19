@@ -1,4 +1,27 @@
-@import './style.scss';
+:root {
+  --snippeter-snippet-editor-border-width: none;
+  --snippeter-snippet-editor-border-style: solid;
+  --snippeter-snippet-editor-border-color: transparent;
+  --snippeter-snippet-editor-label-font-size: 13px;
+  --snippeter-snippet-editor-label-font-color: var(
+    --snippeter-theme-black-color
+  );
+  --snippeter-snippet-editor-input-border-width: 1px;
+  --snippeter-snippet-editor-input-border-style: solid;
+  --snippeter-snippet-editor-input-border-color: var(
+    --snippeter-theme-shade-color
+  );
+  --snippeter-snippet-editor-save-button-border-radius: 4px;
+  --snippeter-snippet-editor-save-button-bg-color: transparent;
+  --snippeter-snippet-editor-save-button-border-width: 1px;
+  --snippeter-snippet-editor-save-button-border-style: solid;
+  --snippeter-snippet-editor-save-button-border-color: var(
+    --snippeter-theme-shade-color
+  );
+  --snippeter-snippet-editor-box-shadow: 2px 2px 3px
+    var(--snippeter-theme-shade-color);
+  --snippeter-setting-editor-button-color: var(--snippeter-theme-black-color);
+}
 
 #snippet-editor {
   grid-column: 1 / 4;
@@ -7,9 +30,9 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
-    border-width: var(--snippeter-snippet-editor-border-width, none);
-    border-style: var(--snippeter-snippet-editor-border-style, solid);
-    border-color: var(--snippeter-snippet-editor-border-color, transparent);
+    border-width: var(--snippeter-snippet-editor-border-width);
+    border-style: var(--snippeter-snippet-editor-border-style);
+    border-color: var(--snippeter-snippet-editor-border-color);
   }
 
   .v-label {
@@ -17,11 +40,8 @@
     flex-direction: column;
 
     & > span {
-      font-size: var(--snippeter-snippet-editor-label-font-size, 13px);
-      color: var(
-        --snippeter-snippet-editor-label-font-color,
-        var(--snippeter-theme-black-color)
-      );
+      font-size: var(--snippeter-snippet-editor-label-font-size);
+      color: var(--snippeter-snippet-editor-label-font-color);
       margin-bottom: 5px;
     }
 
@@ -31,12 +51,9 @@
       margin: 0;
       height: 25px;
       outline: none;
-      border-width: var(--snippeter-snippet-editor-input-border-width, 1px);
-      border-style: var(--snippeter-snippet-editor-input-border-style, solid);
-      border-color: var(
-        --snippeter-snippet-editor-input-border-color,
-        var(--snippeter-theme-shade-color)
-      );
+      border-width: var(--snippeter-snippet-editor-input-border-width);
+      border-style: var(--snippeter-snippet-editor-input-border-style);
+      border-color: var(--snippeter-snippet-editor-input-border-color);
     }
     & > input[type='color'] {
       width: 100%;
@@ -48,31 +65,16 @@
 
   button.save-button {
     margin: auto 0 auto auto;
-    border-radius: var(
-      --snippeter-snippet-editor-save-button-border-radius,
-      $snippeter-border-radius
-    );
+    border-radius: var(--snippeter-snippet-editor-save-button-border-radius);
     grid-column: 3;
     display: flex;
     padding: 5px;
     gap: 5px;
-    background-color: var(
-      --snippeter-snippet-editor-save-button-bg-color,
-      transparent
-    );
-    border-width: var(--snippeter-snippet-editor-save-button-border-width, 1px);
-    border-style: var(
-      --snippeter-snippet-editor-save-button-border-style,
-      solid
-    );
-    border-color: var(
-      --snippeter-snippet-editor-save-button-border-color,
-      var(--snippeter-theme-shade-color)
-    );
-    box-shadow: var(
-      --snippeter-snippet-editor-box-shadow,
-      $snippeter-box-shadow
-    );
+    background-color: var(--snippeter-snippet-editor-save-button-bg-color);
+    border-width: var(--snippeter-snippet-editor-save-button-border-width);
+    border-style: var(--snippeter-snippet-editor-save-button-border-style);
+    border-color: var(--snippeter-snippet-editor-save-button-border-color);
+    box-shadow: var(--snippeter-snippet-editor-box-shadow);
 
     &:active {
       box-shadow: none;
@@ -82,10 +84,7 @@
     & > svg,
     span {
       margin: auto 0;
-      color: var(
-        --snippeter-setting-editor-button-color,
-        var(--snippeter-theme-black-color)
-      );
+      color: var(--snippeter-setting-editor-button-color);
     }
 
     & > svg {

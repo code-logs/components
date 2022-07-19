@@ -1,5 +1,5 @@
 {
-  "name": "@code-logs/snippeter",
+  "name": "@code-logs/breadcrumb",
   "author": {
     "name": "Jay Lee",
     "email": "jaylee.possible@gmail.com",
@@ -11,12 +11,12 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/code-logs/post-it",
-    "directory": "packages/components/snippeter"
+    "directory": "packages/components/breadcrumb"
   },
   "scripts": {
     "lint": "eslint",
     "prettier": "prettier --write",
-    "build": "npm run clean && webpack --config ./webpack.config.js && yarn emit:types",
+    "build": "webpack --config ./webpack.config.js && yarn emit:types",
     "emit:types": "tsc --emitDeclarationOnly",
     "clean": "rm -rf ./dist"
   },
@@ -42,13 +42,6 @@
     "typescript": "^4.7.4",
     "webpack": "^5.73.0",
     "webpack-cli": "^4.10.0"
-  },
-  "dependencies": {
-    "@code-logs/breadcrumb": "workspace: *",
-    "@emotion/react": "^11.9.3",
-    "@emotion/styled": "^11.9.3",
-    "@mui/icons-material": "^5.8.4",
-    "@mui/material": "^5.8.7"
   },
   "peerDependencies": {
     "react": "^18.2.0",

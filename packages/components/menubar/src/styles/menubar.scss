@@ -1,5 +1,3 @@
-@import './style.scss';
-
 .menubar {
   overflow: auto;
   display: flex;
@@ -17,10 +15,7 @@
 
     &:hover,
     &:focus {
-      background-color: var(
-        --menubar-group-menu-hover-bg-color,
-        $menubar-theme-gray-color
-      );
+      background-color: var(--menubar-group-menu-hover-bg-color, #eee);
       transition: background-color 0.3s ease-in-out 0s;
       color: var(--menubar-group-menu-hover-font-color, #000);
     }

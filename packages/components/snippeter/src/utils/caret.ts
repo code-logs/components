@@ -12,6 +12,20 @@ class Caret {
     return selection
   }
 
+  public static getParagraph(element: HTMLElement): HTMLParagraphElement {
+    let paragraph = element
+
+    while (!paragraph.hasAttribute(PARAGRAPH_ATTRIBUTE)) {
+      if (!paragraph.parentElement) {
+        throw new Error('No parent element found')
+      }
+
+      paragraph = paragraph.parentElement
+    }
+
+    return paragraph as HTMLParagraphElement
+  }
+
   public static anchorOffset() {
     return this.getSelection().anchorOffset
   }
@@ -50,14 +64,10 @@ class Caret {
   }
 
   public static escapeCaret() {
-    const snippet = this.anchorNode().parentElement
+    const snippet = this.anchorElement()
     if (!snippet) throw new Error('Failed to find snippet')
 
-    let paragraph = snippet
-    while (paragraph && !paragraph.hasAttribute(PARAGRAPH_ATTRIBUTE)) {
-      if (!paragraph.parentElement) throw new Error('Failed to find paragraph')
-      paragraph = paragraph.parentElement
-    }
+    const paragraph = this.getParagraph(snippet)
 
     const phrase = snippet.parentElement
     if (!phrase) throw new Error('Failed to find phrase')
@@ -66,7 +76,7 @@ class Caret {
     if (!nextPhrase || nextPhrase instanceof HTMLBRElement) {
       nextPhrase?.remove()
       nextPhrase = generatePhrase()
-      paragraph.insertBefore(nextPhrase, phrase.nextSibling)
+      paragraph.insertBefore(nextPhrase, phrase.nextElementSibling)
     }
 
     this.placeCaret(nextPhrase)
