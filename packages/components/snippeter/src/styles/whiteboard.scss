@@ -1,22 +1,25 @@
 :root {
-  --snippeter-white-board-padding: 10px;
-  --snippeter-white-board-bg-color: #fff;
+  --snippeter-whiteboard-padding: 10px;
+  --snippeter-whiteboard-bg-color: #fff;
   --snippeter-border-radius: 4px;
-  --snippeter-white-board-border: 1px solid var(--snippeter-theme-shade-color);
-  --snippeter-white-board-height: 200px;
+  --snippeter-whiteboard-border: 1px solid var(--snippeter-theme-shade-color);
   --snippeter-paragraph-border: 1px solid transparent;
   --snippeter-phrase-border: 1px solid transparent;
   --snippeter-border: 1px solid transparent;
 }
 
 .snippeter-whiteboard {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
   & .whiteboard {
-    padding: var(--snippeter-white-board-padding);
-    background-color: var(--snippeter-white-board-bg-color);
+    flex: 1;
+    padding: var(--snippeter-whiteboard-padding);
+    background-color: var(--snippeter-whiteboard-bg-color);
     border-radius: var(--snippeter-border-radius);
-    border: var(--snippeter-white-board-border);
+    border: var(--snippeter-whiteboard-border);
     outline: none;
-    height: var(--snippeter-white-board-height);
     overflow: auto;
 
     & * {
