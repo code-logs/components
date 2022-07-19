@@ -1,0 +1,29 @@
+.breadcrumb {
+  & .list {
+    display: flex;
+    gap: 10px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    & .list-item {
+      color: var(--breadcrumb-list-item-color, #000);
+      font-size: var(--breadcrumb-list-item-font-size, 14px);
+      text-decoration: var(--breadcrumb-list-item-text-decoration, none);
+      font-style: var(--breadcrumb-list-item-font-style, none);
+      font-weight: var(--breadcrumb-list-item-font-weight, 400);
+
+      &:hover,
+      &:active {
+        color: var(--breadcrumb-list-item-hover-color, #000);
+        font-size: var(--breadcrumb-list-item-hover-font-size, 14px);
+        text-decoration: var(
+          --breadcrumb-list-item-hover-text-decoration,
+          none
+        );
+        font-style: var(--breadcrumb-list-item-hover-font-style, italic);
+        font-weight: var(--breadcrumb-list-item-font-weight, 700);
+      }
+    }
+  }
+}
