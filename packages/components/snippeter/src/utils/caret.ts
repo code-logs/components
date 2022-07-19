@@ -12,7 +12,7 @@ class Caret {
     return selection
   }
 
-  private static getParagraph(element: HTMLElement): HTMLParagraphElement {
+  public static getParagraph(element: HTMLElement): HTMLParagraphElement {
     let paragraph = element
 
     while (!paragraph.hasAttribute(PARAGRAPH_ATTRIBUTE)) {

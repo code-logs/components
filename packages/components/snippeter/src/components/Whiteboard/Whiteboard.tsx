@@ -1,3 +1,5 @@
+import Breadcrumb, { Path } from '@code-logs/breadcrumb'
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 import React, {
   CSSProperties,
   KeyboardEvent,
@@ -44,6 +46,9 @@ const Whiteboard = ({ snippets }: WhiteboardProps) => {
     x: SnippetContextProps['positionX']
     y: SnippetContextProps['positionY']
   }>({ x: 0, y: 0 })
+
+  const [lastBreadcrumb, setLastBreadcrumb] = useState<HTMLElement | null>(null)
+  const [breadcrumbPaths, setBreadcrumbPaths] = useState<Path[]>([])
 
   const computeWhiteboardStyle = useCallback(() => {
     const style: CSSProperties = {}
@@ -149,6 +154,27 @@ const Whiteboard = ({ snippets }: WhiteboardProps) => {
     if (phrase) Caret.placeCaret(phrase)
   }
 
+  const computeBreadcrumb = (currentElement: HTMLElement) => {
+    if (lastBreadcrumb === currentElement) return
+
+    setLastBreadcrumb(currentElement)
+    const breadcrumbPaths: Path[] = [
+      { name: currentElement.tagName.toLowerCase() },
+    ]
+
+    let element = currentElement
+    while (!element.hasAttribute(PARAGRAPH_ATTRIBUTE)) {
+      if (!element.parentElement) {
+        throw new Error('Failed to find parent element')
+      }
+
+      element = element.parentElement
+      breadcrumbPaths.push({ name: element.tagName.toLocaleLowerCase() })
+    }
+
+    return breadcrumbPaths.reverse()
+  }
+
   return (
     <section className="snippeter-whiteboard">
       <WhiteboardOptionController
@@ -201,11 +227,21 @@ const Whiteboard = ({ snippets }: WhiteboardProps) => {
           if (currentElement?.hasAttribute(SNIPPET_ATTRIBUTE)) {
             onSnippetKeyDown(event)
           }
+
+          if (currentElement) {
+            const breadcrumbPaths = computeBreadcrumb(currentElement)
+            if (breadcrumbPaths) setBreadcrumbPaths(breadcrumbPaths)
+          }
         }}
         onClick={(event) => {
           if (event.currentTarget.childElementCount === 0) appendParagraph()
         }}
       ></div>
+
+      <Breadcrumb
+        paths={breadcrumbPaths}
+        delimiter={<KeyboardArrowRightIcon />}
+      />
     </section>
   )
 }

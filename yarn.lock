@@ -1663,7 +1663,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@code-logs/breadcrumb@workspace:packages/components/breadcrumb":
+"@code-logs/breadcrumb@workspace: *, @code-logs/breadcrumb@workspace:packages/components/breadcrumb":
   version: 0.0.0-use.local
   resolution: "@code-logs/breadcrumb@workspace:packages/components/breadcrumb"
   dependencies:
@@ -1764,6 +1764,7 @@ __metadata:
     "@babel/preset-env": ^7.18.2
     "@babel/preset-react": ^7.17.12
     "@babel/preset-typescript": ^7.17.12
+    "@code-logs/breadcrumb": "workspace: *"
     "@emotion/react": ^11.9.3
     "@emotion/styled": ^11.9.3
     "@mui/icons-material": ^5.8.4

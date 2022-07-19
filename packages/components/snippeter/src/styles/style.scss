@@ -4,6 +4,11 @@
   --snippeter-theme-shade-color: #b1bdc5;
   --snippeter-theme-black-color: #3b3b3b;
   --snippeter-theme-warn-color: #ffbe6b;
+  --breadcrumb-list-item-color: var(--snippeter-theme-shade-color);
+
+  --snippeter-setting-padding: 20px;
+  --snippeter-setting-board-radius: 4px;
+  --snippeter-setting-box-shadow: 2px 2px 3px var(--snippeter-theme-shade-color);
 }
 
 $snippeter-transparent-border: 1px solid transparent;
