@@ -1,10 +1,10 @@
 import React, { MouseEvent, useState } from 'react'
 import '../styles/menubar.scss'
-import { GroupMenu, MenuItem } from '../types'
+import { GroupMenu, Menu, MenuItem } from '../types'
 import MenuItems, { MenuItemsProps } from './MenuItems'
 
 export interface MenubarProps {
-  menus: GroupMenu[]
+  menus: Menu[]
   menuAlign?: 'left' | 'center' | 'right'
   onRoute: MenuItemsProps['onRoute']
   activeChecker?: MenuItemsProps['activeChecker']
@@ -17,7 +17,9 @@ const Menubar = ({
   activeChecker,
 }: MenubarProps) => {
   const [toggledMenuIndex, setToggledMenuIndex] = useState(-1)
-  const [subMenus, setSubMenus] = useState<MenuItem[]>(menus[0].subMenus)
+  const [subMenus, setSubMenus] = useState<MenuItem[]>(
+    'subMenus' in menus[0] ? menus[0].subMenus : []
+  )
   const [menuItemPositionX, setMenuItemPositionX] = useState<number | null>(
     null
   )
@@ -33,7 +35,7 @@ const Menubar = ({
       setToggledMenuIndex(-1)
     } else {
       setToggledMenuIndex(index)
-      setSubMenus(menus[index].subMenus)
+      setSubMenus((menus[index] as GroupMenu).subMenus)
     }
 
     const { left, bottom } = button.getBoundingClientRect()
@@ -41,18 +43,40 @@ const Menubar = ({
     setMenuItemPositionY(bottom)
   }
 
+  const menuItemClickHandler = (route: string) => {
+    setToggledMenuIndex(-1)
+    onRoute(route)
+  }
+
   return (
     <div className={`menubar align-${menuAlign}`}>
-      {menus.map(({ name }, index) => (
-        <button
-          type="button"
-          key={name}
-          data-index={index}
-          onClick={groupMenuClickHandler}
-        >
-          {name}
-        </button>
-      ))}
+      {menus.map((menu, index) => {
+        if ('subMenus' in menu) {
+          const { name } = menu
+          return (
+            <button
+              type="button"
+              key={name}
+              data-index={index}
+              onClick={groupMenuClickHandler}
+            >
+              {name}
+            </button>
+          )
+        } else {
+          const { name, route } = menu
+          return (
+            <button
+              type="button"
+              key={name}
+              data-index={index}
+              onClick={() => menuItemClickHandler(route)}
+            >
+              {name}
+            </button>
+          )
+        }
+      })}
 
       {subMenus && menuItemPositionX && menuItemPositionY && (
         <MenuItems
@@ -61,10 +85,7 @@ const Menubar = ({
           positionX={menuItemPositionX}
           positionY={menuItemPositionY}
           activeChecker={activeChecker}
-          onRoute={(route) => {
-            setToggledMenuIndex(-1)
-            onRoute(route)
-          }}
+          onRoute={menuItemClickHandler}
         />
       )}
     </div>
