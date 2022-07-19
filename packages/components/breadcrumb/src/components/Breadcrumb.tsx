@@ -21,7 +21,7 @@ const Breadcrumb = ({
       return (
         <>
           <a
-            className="list-item"
+            className="list-item anchor"
             href={route}
             onClick={(event) => {
               if (!onRoute) return
