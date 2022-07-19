@@ -2,7 +2,7 @@ import React from 'react'
 import Breadcrumb, { BreadcrumbProps } from '../src'
 
 export default {
-  title: 'Breadcrumb Example',
+  title: 'Breadcrumb',
   component: Breadcrumb,
 }
 

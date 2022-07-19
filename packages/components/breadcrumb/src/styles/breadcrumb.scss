@@ -12,9 +12,13 @@
       text-decoration: var(--breadcrumb-list-item-text-decoration, none);
       font-style: var(--breadcrumb-list-item-font-style, none);
       font-weight: var(--breadcrumb-list-item-font-weight, 400);
+      cursor: default;
 
-      &:hover,
-      &:active {
+      &.anchor {
+        cursor: pointer;
+      }
+      &.anchor:hover,
+      &.anchor:active {
         color: var(--breadcrumb-list-item-hover-color, #000);
         font-size: var(--breadcrumb-list-item-hover-font-size, 14px);
         text-decoration: var(
