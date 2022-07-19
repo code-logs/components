@@ -1,8 +1,7 @@
-@import './style.scss';
-
 $transition-duration: 0.3s;
 $default-border-width: 0px;
 $default-border-style: solid;
+$default-border-color: #eee;
 
 .menu-items {
   z-index: 10;
@@ -24,14 +23,18 @@ $default-border-style: solid;
     border-style: var(--menubar-menu-item-border-style, $default-border-style);
     border-color: transparent;
     border-radius: var(--menubar-menu-item-border-radius, 6px);
-    transition: border $transition-duration ease-in-out;
+    transition-property: border;
+    transition-duration: $transition-duration;
+    transition-timing-function: ease-in-out;
   }
 
   &.visible .list-wrapper {
     border: var(--menubar-menu-item-border-width, $default-border-width)
       var(--menubar-menu-item-border-style, $default-border-style)
-      var(--menubar-menu-item-border-color, $menubar-theme-gray-color);
-    transition: border $transition-duration ease-in-out;
+      var(--menubar-menu-item-border-color, $default-border-color);
+    transition-property: border;
+    transition-duration: $transition-duration;
+    transition-timing-function: ease-in-out;
   }
 
   & .menu-item-list {
@@ -65,10 +68,7 @@ $default-border-style: solid;
       &.active,
       &:hover,
       &:focus {
-        background-color: var(
-          --menubar-menu-item-hover-bg-color,
-          $menubar-theme-gray-color
-        );
+        background-color: var(--menubar-menu-item-hover-bg-color, #eee);
 
         & a {
           color: var(--menubar-menu-item-hover-font-color, #000);
