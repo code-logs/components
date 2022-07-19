@@ -17,7 +17,7 @@
       border-left: none;
 
       & > svg {
-        margin-left: 0;
+        margin: auto 0;
       }
     }
 
@@ -30,7 +30,7 @@
         --snippeter-controller-icon-button-size,
         $snippeter-icon-button-size
       );
-      margin-left: 5px;
+      margin: auto auto auto 5px;
     }
   }
 

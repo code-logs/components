@@ -1,7 +1,6 @@
 import { Story } from '@storybook/react'
 import React, { useState } from 'react'
-import { Snippet } from 'types'
-import Snippeter, { SnippeterProps } from '../src'
+import Snippeter, { SnippeterProps, Snippet } from '../src'
 
 const MY_SNIPPETS_LOCAL_STORAGE_KEY = 'MY_SNIPPETS'
 
